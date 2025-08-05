@@ -1,0 +1,44 @@
+{
+  "principio_multiplicativo": [
+    {
+      "enunciado": "Una heladería ofrece 3 sabores de helado, 2 tipos de cono y 4 toppings. ¿Cuántas combinaciones únicas puedes pedir?",
+      "solucion_correcta": "3 × 2 × 4 = 24",
+      "conceptos_clave": ["Principio multiplicativo", "Eventos independientes"],
+      "dificultad": "basico"
+    },
+    {
+      "enunciado": "¿Cuántos números de 2 dígitos pueden formarse si el primer dígito debe ser par y el segundo impar?",
+      "solucion_correcta": "4 × 5 = 20 (dígitos pares: 2,4,6,8; impares: 1,3,5,7,9)",
+      "conceptos_clave": ["Restricciones en conteo", "Principio multiplicativo"],
+      "dificultad": "intermedio"
+    }
+  ],
+  "permutaciones": [
+    {
+      "enunciado": "¿De cuántas formas pueden ordenarse 4 libros distintos en un estante?",
+      "solucion_correcta": "4! = 24",
+      "conceptos_clave": ["Factorial", "Permutaciones lineales"],
+      "dificultad": "basico"
+    },
+    {
+      "enunciado": "Con las letras de la palabra 'LUNA', ¿cuántas palabras de 3 letras distintas pueden formarse?",
+      "solucion_correcta": "P(4,3) = 24",
+      "conceptos_clave": ["Permutaciones parciales", "Orden importa"],
+      "dificultad": "intermedio"
+    }
+  ],
+  "combinaciones": [
+    {
+      "enunciado": "¿Cuántos comités de 2 personas pueden formarse con 5 estudiantes?",
+      "solucion_correcta": "C(5,2) = 10",
+      "conceptos_clave": ["Combinaciones", "Orden no importa"],
+      "dificultad": "basico"
+    },
+    {
+      "enunciado": "En una tienda hay 7 frutas distintas. ¿De cuántas formas puedes elegir 4 frutas si 2 de ellas son fijas?",
+      "solucion_correcta": "C(5,2) = 10 (las 2 fijas + 2 de las 5 restantes)",
+      "conceptos_clave": ["Combinaciones con restricciones"],
+      "dificultad": "intermedio"
+    }
+  ]
+}
