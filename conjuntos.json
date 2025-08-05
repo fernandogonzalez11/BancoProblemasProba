@@ -1,0 +1,56 @@
+{
+    "teoria_conjuntos": [
+        {
+            "enunciado": "Sea el conjunto \\( A = \\{1, 2, 3, \\dots, n\\}), con \\( n > 3 \\). ¿Cuántos subconjuntos de \\( A \\) contienen al menos uno de los elementos 1, 2 o 3?",
+            "solucion_correcta": "2^n - 2^{n - 3} (total de subconjuntos menos los que no contienen 1, 2 ni 3)",
+            "conceptos_clave": [
+                "Subconjuntos",
+                "Complemento",
+                "Principio de conteo"
+            ],
+            "dificultad": "intermedio"
+        }
+    ],
+    "espacios_muestrales": [
+        {
+            "enunciado": "Una urna contiene 3 bolas amarillas y 2 bolas rojas, etiquetadas como \\( A_1, A_2, A_3 \\) y \\( R_1, R_2 \\), respectivamente. Se extraen 2 bolas sin reposición. Construya un espacio muestral equiprobable y calcule:\n1. La probabilidad de que las bolas extraídas sean de diferente color.\n2. La probabilidad de que sean del mismo color.",
+            "solucion_correcta": "Espacio muestral equiprobable:\n\\[ \n\\Omega = \\{ (X, Y) \\mid X \\neq Y,\\ X, Y \\in \\{A_1, A_2, A_3, R_1, R_2\\} \\} \n\\]\ny el orden importa porque no hay reposición. Entonces, \\( \\lvert \\Omega \\rvert = 20 \\).\n\nCasos con diferente color: todas las parejas donde uno es \\( A_i \\) y otro \\( R_j \\): 12 casos.\nCasos con mismo color: pares \\( (A_i, A_j) \\) y \\( (R_i, R_j) \\): 8 casos.\n\n- \\( P(\\text{diferente color}) = \\frac{12}{20} = 0.6 \\)\n- \\( P(\\text{mismo color}) = \\frac{8}{20} = 0.4 \\)",
+            "conceptos_clave": [
+                "Espacio muestral equiprobable",
+                "Probabilidad clásica",
+                "Extracción sin reemplazo"
+            ],
+            "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "Una urna contiene 6 bolas amarillas numeradas del 1 al 6 y 6 bolas rojas numeradas también del 1 al 6. Se extrae una bola amarilla y una bola roja. ¿Cuál es la probabilidad de que la suma de los números obtenidos esté entre 5 y 11 (inclusive)?",
+            "solucion_correcta": "Espacio muestral equiprobable:\n\\[ \n\\Omega = \\{ (a, r) \\mid a, r \\in \\{1, 2, 3, 4, 5, 6\\} \\} \n\\]\ncon \\( \\lvert \\Omega \\rvert = 36 \\).\n\nCasos favorables: pares \\( (a, r) \\) tales que \\( 5 \\leq a + r \\leq 11 \\).\nNúmero de casos favorables = 30.\n\n- \\( P(5 \\leq a + r \\leq 11) = \\frac{30}{36} = \\frac{5}{6} \\)",
+            "conceptos_clave": [
+                "Espacio muestral equiprobable",
+                "Probabilidad clásica",
+                "Conteo de pares con suma restringida"
+            ],
+            "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "En un grupo hay 4 hombres y 3 mujeres, entre las cuales están Ana y María. Se elige una pareja formada por un hombre y una mujer. ¿Cuál es la probabilidad de que Ana o María esté en la pareja seleccionada?",
+            "solucion_correcta": "Espacio muestral equiprobable:\n\\[ \n\\Omega = \\{ (h, m) \\mid h \\in H,\\ m \\in M \\} \n\\]\ndonde \\( \\lvert H \\rvert = 4 \\), \\( \\lvert M \\rvert = 3 \\Rightarrow \\lvert \\Omega \\rvert = 12 \\).\n\nCasos favorables: todas las parejas donde la mujer es Ana o María \\( \\Rightarrow 4 + 4 = 8 \\) casos.\n\n- \\( P(\\text{Ana o María}) = \\frac{8}{12} = \\frac{2}{3} \\)",
+            "conceptos_clave": [
+                "Espacio muestral equiprobable",
+                "Probabilidad clásica",
+                "Eventos favorables"
+            ],
+            "dificultad": "básico"
+        },
+        {
+            "enunciado": "En un grupo de 7 personas (4 hombres y 3 mujeres, entre ellas Ana y María), se realizan 2 rifas independientes con posible repetición (una persona puede ganar las dos veces). ¿Cuál es la probabilidad de que al menos una de las personas ganadoras sea Ana o María?",
+            "solucion_correcta": "Espacio muestral:\n\\( \\Omega = \\{ (x, y) \\mid x, y \\in P, \\lvert P \\rvert = 7 \\} \\) con \\( \\lvert \\Omega \\rvert = 49 \\).\n\nProbabilidad de que ninguno gane (ni Ana ni María):\n\\( \\left( \\frac{5}{7} \\right)^2 = \\frac{25}{49} \\).\n\nEntonces:\n\\[ P(\\text{Ana o María gana}) = 1 - \\frac{25}{49} = \\frac{24}{49} \\]",
+            "conceptos_clave": [
+                "Probabilidad clásica",
+                "Espacio muestral con reemplazo",
+                "Eventos complementarios"
+            ],
+            "dificultad": "intermedio"
+        }
+    ]
+}
