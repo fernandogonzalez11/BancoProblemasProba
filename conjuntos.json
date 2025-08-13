@@ -9,6 +9,36 @@
                 "Principio de conteo"
             ],
             "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "¿Cuántos números de 3 dígitos distintos, donde el primero no es 0, usando solo dígitos de X = {0, 1, 2, 3, 5, 7, 8}, son pares o múltiplos de 5?",
+            "solucion_correcta": "Total pares: último dígito 0, 2 o 8.\n- Último dígito 0: 6 opciones para el primero (1,2,3,5,7,8) × 5 para el segundo = 30.\n- Último dígito 2: 5 opciones para el primero (X sin 0,2) × 5 para el segundo = 25.\n- Último dígito 8: 5 opciones para el primero (X sin 0,8) × 5 para el segundo = 25.\nTotal pares = 30 + 25 + 25 = 80.\n\nTotal múltiplos de 5: último dígito 0 o 5.\n- Último dígito 0: ya contado = 30.\n- Último dígito 5: 5 opciones para el primero (X sin 0,5) × 5 para el segundo = 25.\nTotal múltiplos de 5 = 30 + 25 = 55.\n\nIntersección (pares y múltiplos de 5): último dígito 0 → 30.\n\nPor inclusión-exclusión: 80 + 55 - 30 = 105.",
+            "conceptos_clave": [
+                "Principio de inclusión-exclusión",
+                "Principio de conteo",
+                "Números de 3 dígitos distintos con dígitos restringidos"
+            ],
+            "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "Hay 7 bolas azules (A), 6 rojas (R) y 5 blancas (B). ¿En cuántos ordenamientos lineales NO aparece al menos un bloque completo de un color (todos los A juntos, o todos los R juntos, o todos los B juntos)?",
+            "solucion_correcta": "Total sin restricción: T = 18!/(7!6!5!). Sea A: “las 7 azules juntas”, R: “las 6 rojas juntas”, B: “las 5 blancas juntas”.\n|A| = 12!/(6!5!), |R| = 13!/(7!5!), |B| = 14!/(7!6!).\n|A∩R| = 7!/5!, |A∩B| = 8!/6!, |R∩B| = 9!/7!, |A∩R∩B| = 3!.\nPor inclusión–exclusión: T − (|A|+|R|+|B|) + (|A∩R|+|A∩B|+|R∩B|) − |A∩R∩B| = 14,662,988.",
+            "conceptos_clave": [
+                "Permutaciones con repetición",
+                "Bloques",
+                "Principio de inclusión–exclusión"
+            ],
+            "dificultad": "avanzado"
+        },
+        {
+            "enunciado": "Dada la palabra \"camisas\" (letras: c, a, m, i, s, a, s), ¿en cuántos ordenamientos quedan las 'a' juntas o las 's' juntas?",
+            "solucion_correcta": "Sea A = «las 2 a juntas», B = «las 2 s juntas». Total sin restricción = 7!/(2!2!) = 1260.\n|A|: tratar \"aa\" como bloque → 6 objetos con 2 s iguales → 6!/2! = 360.\n|B| = 360 por simetría.\n|A∩B|: bloques \"aa\" y \"ss\" → 5 objetos distintos → 5! = 120.\nPor inclusión–exclusión: |A∪B| = 360 + 360 − 120 = 600.",
+            "conceptos_clave": [
+                "Permutaciones con repetición",
+                "Bloques (tratar letras juntas)",
+                "Principio de inclusión–exclusión"
+            ],
+            "dificultad": "básico"
         }
     ],
     "espacios_muestrales": [

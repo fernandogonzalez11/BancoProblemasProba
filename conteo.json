@@ -3,13 +3,19 @@
     {
       "enunciado": "Una heladería ofrece 3 sabores de helado, 2 tipos de cono y 4 toppings. ¿Cuántas combinaciones únicas puedes pedir?",
       "solucion_correcta": "3 × 2 × 4 = 24",
-      "conceptos_clave": ["Principio multiplicativo", "Eventos independientes"],
+      "conceptos_clave": [
+        "Principio multiplicativo",
+        "Eventos independientes"
+      ],
       "dificultad": "basico"
     },
     {
       "enunciado": "¿Cuántos números de 2 dígitos pueden formarse si el primer dígito debe ser par y el segundo impar?",
       "solucion_correcta": "4 × 5 = 20 (dígitos pares: 2,4,6,8; impares: 1,3,5,7,9)",
-      "conceptos_clave": ["Restricciones en conteo", "Principio multiplicativo"],
+      "conceptos_clave": [
+        "Restricciones en conteo",
+        "Principio multiplicativo"
+      ],
       "dificultad": "intermedio"
     }
   ],
@@ -17,13 +23,84 @@
     {
       "enunciado": "¿De cuántas formas pueden ordenarse 4 libros distintos en un estante?",
       "solucion_correcta": "4! = 24",
-      "conceptos_clave": ["Factorial", "Permutaciones lineales"],
+      "conceptos_clave": [
+        "Factorial",
+        "Permutaciones lineales"
+      ],
       "dificultad": "basico"
     },
     {
       "enunciado": "Con las letras de la palabra 'LUNA', ¿cuántas palabras de 3 letras distintas pueden formarse?",
       "solucion_correcta": "P(4,3) = 24",
-      "conceptos_clave": ["Permutaciones parciales", "Orden importa"],
+      "conceptos_clave": [
+        "Permutaciones parciales",
+        "Orden importa"
+      ],
+      "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "Tengo 16 libros distintos y 2 estantes, cada uno con 10 posiciones (pueden quedar vacías). ¿De cuántas formas puedo colocarlos?",
+      "solucion_correcta": "Imaginemos los 2 estantes como una hilera de 20 posiciones (10 en el primero, 10 en el segundo). Elegimos cuáles 16 posiciones tendrán libros: \\( \\binom{20}{16} \\) formas. Luego, colocamos los 16 libros distintos en esas posiciones: \\( 16! \\) formas. Total:\n\\[ \\binom{20}{16} \\cdot 16! = \\binom{20}{4} \\cdot 16! = 4845 \\cdot 20,922,789,888,000 = 1.01377\\times 10^{17} \\]",
+      "conceptos_clave": [
+        "Principio de conteo",
+        "Permutaciones con huecos",
+        "Modelado por posiciones fijas"
+      ],
+      "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "Dada la palabra \"camisa\" (letras: c, a, m, i, s, a), responda: 1) ¿cuántos ordenamientos hay sin restricciones? 2) ¿cuántos ordenamientos hay con las vocales en orden alfabético? 3) ¿cuántos ordenamientos poseen que el bloque formado por las tres vocales (a, a, i) esté pegado, sin importar su orden interno?",
+      "solucion_correcta": "1) 6!/2! = 360.\n2) Elegir 3 posiciones para las vocales: C(6,3)=20; permutar las 3 consonantes en las otras 3 posiciones: 3!=6 → 20·6=120.\n3) Tratar el bloque de 3 vocales como una sola pieza: quedan 4 objetos (bloque + c + m + s) → 4! = 24 ordenamientos. Dentro del bloque las permutaciones distintas de {a,a,i} son 3!/2! = 3. Total = 24·3 = 72.",
+      "conceptos_clave": [
+        "Permutaciones con repetición",
+        "Bloques y adyacencias",
+        "Conteo por multiplicación"
+      ],
+      "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "Hay 6 mujeres distintas y 10 hombres distintos y se sentarán en 16 butacas en fila. Calcule el número de maneras de sentarse en cada caso:",
+      "preguntas": [
+        "1. Sin restricciones",
+        "2. Todos los hombres quedan juntos entre sí (bloque de 10 consecutivos)",
+        "3. Todos los hombres juntos en un bloque y todas las mujeres juntas en otro bloque",
+        "4. Todos los hombres juntos en un bloque, o todas las mujeres juntas en un bloque (unión)",
+        "5. No quedan hombres juntos (ninguna pareja de hombres adyacente)",
+        "6. Todas las mujeres quedan separadas entre sí (ninguna pareja de mujeres adyacente)"
+      ],
+      "solucion_correcta": {
+        "1": {
+          "formula": "16!",
+          "comentario": "Asignar las 16 personas a 16 butacas: permutación completa."
+        },
+        "2": {
+          "formula": "7 \\times 10! \\times 6!",
+          "comentario": "El bloque de 10 hombres puede empezar en 7 posiciones (16-10+1); dentro del bloque 10!; las 6 mujeres en las 6 butacas restantes: 6!."
+        },
+        "3": {
+          "formula": "2 \\times 10! \\times 6!",
+          "comentario": "Con ambos bloques llenan las 16 butacas; sólo dos órdenes de bloques (H–M o M–H); permutaciones internas: 10!, 6!."
+        },
+        "4": {
+          "formula": "16 \\times 10! \\times 6!",
+          "comentario": "Por inclusión–exclusión: |H|+|M|−|H∩M| = 7!·10! + 11!·6! - 2·6!·10! (|M| tiene 11 posiciones para el bloque de 6)."
+        },
+        "5": {
+          "formula": "0",
+          "comentario": "Imposible: para que 10 hombres no estén adyacentes hacen falta al menos 9 separadores; con sólo 6 mujeres hay sólo 7 huecos, máximo 7 hombres sin adyacencia."
+        },
+        "6": {
+          "formula": "10! \\times \\binom{11}{6} \\times 6!",
+          "comentario": "Ordenar los 10 hombres: 10!; generan 11 huecos; elegir 6 huecos para las mujeres: C(11,6); permutar las 6 mujeres: 6!."
+        }
+      },
+      "conceptos_clave": [
+        "Permutaciones",
+        "Bloques consecutivos",
+        "Principio de conteo",
+        "Inclusión–exclusión",
+        "Huecos (gaps) para evitar adyacencias"
+      ],
       "dificultad": "intermedio"
     }
   ],
@@ -31,13 +108,43 @@
     {
       "enunciado": "¿Cuántos comités de 2 personas pueden formarse con 5 estudiantes?",
       "solucion_correcta": "C(5,2) = 10",
-      "conceptos_clave": ["Combinaciones", "Orden no importa"],
+      "conceptos_clave": [
+        "Combinaciones",
+        "Orden no importa"
+      ],
       "dificultad": "basico"
     },
     {
       "enunciado": "En una tienda hay 7 frutas distintas. ¿De cuántas formas puedes elegir 4 frutas si 2 de ellas son fijas?",
       "solucion_correcta": "C(5,2) = 10 (las 2 fijas + 2 de las 5 restantes)",
-      "conceptos_clave": ["Combinaciones con restricciones"],
+      "conceptos_clave": [
+        "Combinaciones con restricciones"
+      ],
+      "dificultad": "intermedio"
+    }
+  ],
+  "objetos_en_celdas": [
+    {
+      "enunciado": "Repartes 15 lápices entre 4 niños. Cada uno recibe mínimo 1; el segundo niño recibe a lo sumo 4. ¿De cuántas maneras se puede distribuir?",
+      "solucion_correcta": "Primero, asigna 1 lápiz a cada niño (4 en total). Quedan 11 lápices por repartir. Usa el método de 'stars and bars' con la restricción para el segundo niño (que ahora puede recibir hasta 3 lápices adicionales, ya que ya tiene 1). La solución es la suma de casos donde el segundo niño recibe 0, 1, 2 o 3 lápices adicionales: \\( \\sum_{k=0}^{3} C(10 - k, 2) \\).",
+      "conceptos_clave": [
+        "Principio de conteo",
+        "Distribución con restricciones",
+        "Método de stars and bars"
+      ],
+      "dificultad": "intermedio"
+    }
+  ],
+  "probabilidades_equiprobables": [
+    {
+      "enunciado": "En la clase de Probabilidades hay 22 hombres y 6 mujeres. Se escogen 2 personas al azar. ¿Cuál es la probabilidad de que haya al menos una mujer en el grupo seleccionado?",
+      "solucion_correcta": "1 - P(ninguna mujer) = 1 - (C(22, 2) / C(28, 2)) = 1 - (231 / 378) ≈ 0.3889 (38.89%)",
+      "conceptos_clave": [
+        "Probabilidad complementaria",
+        "Combinaciones",
+        "Espacio equiprobable",
+        "Conteo de casos favorables"
+      ],
       "dificultad": "intermedio"
     }
   ]
