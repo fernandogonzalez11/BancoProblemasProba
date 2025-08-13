@@ -1,0 +1,172 @@
+{
+    "probabilidad_condicional": [
+        {
+            "enunciado": "Se lanzan 2 dados. Tome A como 'la suma es 7', B como 'el primer dado cae en 3 o menos'. ¿Cuál es la probabilidad de A dado B?",
+            "solucion_correcta": "P(A|B) = P(A ∩ B) / P(B) = (3/36) / (18/36) = 3/18 = 1/6 ≈ 0.1667 (16.67%)",
+            "conceptos_clave": [
+                "Probabilidad condicional",
+                "Eventos independientes/dependientes",
+                "Espacio muestral finito"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "P(A ∩ B)": "Casos donde la suma es 7 Y el primer dado es ≤3: (1,6), (2,5), (3,4) → 3 casos.",
+                "P(B)": "El primer dado puede ser 1, 2 o 3 (3 opciones) y el segundo dado 6 opciones → 3×6=18 casos.",
+                "Resultado": "P(A|B) = 3/18 = 1/6."
+            }
+        },
+        {
+            "enunciado": "Hay una urna con 4 bolas azules y 3 amarillas. Se eligen 2 bolas de la urna sin reposición. ¿Cuál es la probabilidad de que la segunda bola sea amarilla?",
+            "solucion_correcta": "P(Segunda amarilla) = P(Primera azul) × P(Segunda amarilla | Primera azul) + P(Primera amarilla) × P(Segunda amarilla | Primera amarilla) = (4/7) × (3/6) + (3/7) × (2/6) = (12/42) + (6/42) = 18/42 = 3/7 ≈ 0.4286 (42.86%)",
+            "conceptos_clave": [
+                "Probabilidad total",
+                "Eventos dependientes",
+                "Conteo sin reposición"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Caso 1": "Si la primera bola es azul (4/7), quedan 3 amarillas de 6 → P = (4/7) × (3/6).",
+                "Caso 2": "Si la primera bola es amarilla (3/7), quedan 2 amarillas de 6 → P = (3/7) × (2/6).",
+                "Resultado": "Suma de ambos casos: 12/42 + 6/42 = 18/42 = 3/7."
+            }
+        },
+        {
+            "enunciado": "Demuestre que si A y B son eventos independientes, entonces el complemento de A (denotado como Aᶜ) y B también son independientes.",
+            "solucion_correcta": "Para demostrar que Aᶜ y B son independientes, verificamos que P(Aᶜ ∩ B) = P(Aᶜ) × P(B).\n\n1. **Partimos de la independencia de A y B**: P(A ∩ B) = P(A) × P(B).\n2. **Expresamos P(B)** como: P(B) = P(A ∩ B) + P(Aᶜ ∩ B).\n3. **Sustituimos P(A ∩ B)**: P(B) = P(A) × P(B) + P(Aᶜ ∩ B).\n4. **Despejamos P(Aᶜ ∩ B)**: P(Aᶜ ∩ B) = P(B) - P(A) × P(B) = P(B) × (1 - P(A)) = P(B) × P(Aᶜ).\n5. **Conclusión**: P(Aᶜ ∩ B) = P(Aᶜ) × P(B), por lo tanto, Aᶜ y B son independientes.",
+            "conceptos_clave": [
+                "Independencia de eventos",
+                "Probabilidad de complementos",
+                "Propiedades de probabilidad"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "Paso 1": "Usamos la definición de independencia entre A y B.",
+                "Paso 2": "Descomponemos P(B) en términos de A y su complemento.",
+                "Paso 3": "Aplicamos la independencia de A y B para sustituir P(A ∩ B).",
+                "Paso 4": "Despejamos P(Aᶜ ∩ B) y simplificamos usando P(Aᶜ) = 1 - P(A).",
+                "Paso 5": "Concluimos que Aᶜ y B satisfacen la condición de independencia."
+            }
+        },
+        {
+            "enunciado": "Una enfermedad afecta al 2% de la población. Un test diagnostico tiene las siguientes características: da positivo cuando la persona está enferma en el 95% de los casos (verdaderos positivos), y da positivo cuando la persona está sana en el 3% de los casos (falsos positivos). Si una persona da positivo en el test, ¿cuál es la probabilidad de que esté realmente enferma?",
+            "solucion_correcta": "Aplicamos el Teorema de Bayes:\n\n\\[ P(\\text{Enfermo}|\\text{Positivo}) = \\frac{P(\\text{Positivo}|\\text{Enfermo}) \\times P(\\text{Enfermo})}{P(\\text{Positivo})} \\]\n\nDonde:\n- \\[ P(\\text{Positivo}) = P(\\text{Positivo}|\\text{Enfermo}) \\times P(\\text{Enfermo}) + P(\\text{Positivo}|\\text{Sano}) \\times P(\\text{Sano}) = 0.95 \\times 0.02 + 0.03 \\times 0.98 = 0.019 + 0.0294 = 0.0484 \\]\n- Numerador: \\[ 0.95 \\times 0.02 = 0.019 \\]\n\nResultado:\n\\[ \\frac{0.019}{0.0484} \\approx 0.3926 \\text{ (39.26%)} \\]",
+            "conceptos_clave": [
+                "Teorema de Bayes",
+                "Probabilidad condicional",
+                "Falsos positivos",
+                "Prevalencia"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Calculamos la probabilidad total de dar positivo \\[ P(\\text{Positivo}) \\] considerando tanto enfermos como sanos.",
+                "Paso 2": "Calculamos la probabilidad conjunta \\[ P(\\text{Positivo} \\cap \\text{Enfermo}) \\].",
+                "Paso 3": "Aplicamos Bayes para encontrar la probabilidad condicional inversa.",
+                "Interpretación": "A pesar de dar positivo, solo hay un 39.26% de probabilidad de estar realmente enfermo debido a la baja prevalencia de la enfermedad y los falsos positivos."
+            }
+        },
+        {
+            "enunciado": "Carmen tiene una moneda cargada donde P(corona) = 0.43. Lanza la moneda hasta obtener 2 resultados iguales consecutivos (2 coronas seguidas o 2 escudos seguidos). ¿Cómo se ve el espacio muestral? ¿Cuál es la probabilidad de que el juego llegue hasta 20 lanzamientos?",
+            "solucion_correcta": {
+                "Espacio_muestral": "Secuencias que terminan en la primera repetición consecutiva (CC o EE). Ejemplos: CC, EE, CEC, ECE, CECECCC...",
+                "Probabilidad_20_lanzamientos": "Requiere que los primeros 19 lanzamientos alternen perfectamente (sin repeticiones consecutivas) y el 20vo repita el 19no. Probabilidad: 2 × (0.43 × 0.57)^9 × (0.57 × 0.43)^9 × 0.57 ≈ 0 (prácticamente nula)."
+            },
+            "conceptos_clave": [
+                "Cadenas de Markov",
+                "Probabilidad geométrica modificada",
+                "Eventos raros"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "Espacio_muestral": {
+                    "Descripción": "Todas las secuencias finitas que terminan en la primera repetición consecutiva. Deben alternar resultados hasta el último par.",
+                    "Ejemplos_válidos": [
+                        "CC",
+                        "EE",
+                        "CEC",
+                        "ECE",
+                        "CECECC"
+                    ],
+                    "Ejemplos_no_válidos": [
+                        "C",
+                        "E",
+                        "CE",
+                        "EC",
+                        "CECE"
+                    ]
+                },
+                "Probabilidad_20_lanzamientos": {
+                    "Requisito": "Los primeros 19 lanzamientos deben alternar perfectamente (sin repeticiones), y el 20vo debe repetir el 19no.",
+                    "Cálculo": "2 patrones posibles (CECECE... o ECECEC...) hasta el 19no lanzamiento. Probabilidad por patrón: (0.43 × 0.57)^9 × (0.57 × 0.43)^9. Probabilidad de repetir el último: 0.43 o 0.57 según el caso.",
+                    "Resultado": "La probabilidad decae exponencialmente, siendo prácticamente 0 para 20 lanzamientos."
+                }
+            }
+        }
+    ],
+    "probabilidad_total": [
+        {
+            "enunciado": "De los estudiantes del TEC, 50% son de Cartago, 20% de San José y 30% de otros lugares. 10% de los de Cartago son feos, 50% de los de San José son feos, 2% de los de Otros son feos. Si se elige una persona al azar, ¿cuál es la probabilidad de que sea feo?",
+            "solucion_correcta": "P(Feo) = P(Feo|Cartago) × P(Cartago) + P(Feo|San José) × P(San José) + P(Feo|Otros) × P(Otros) = (0.10 × 0.50) + (0.50 × 0.20) + (0.02 × 0.30) = 0.05 + 0.10 + 0.006 = 0.156 (15.6%)",
+            "conceptos_clave": [
+                "Probabilidad total",
+                "Eventos dependientes",
+                "Probabilidad condicional"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Calculamos la probabilidad de que un estudiante feo sea de Cartago: 10% de 50% → 0.10 × 0.50 = 0.05.",
+                "Paso 2": "Calculamos la probabilidad de que un estudiante feo sea de San José: 50% de 20% → 0.50 × 0.20 = 0.10.",
+                "Paso 3": "Calculamos la probabilidad de que un estudiante feo sea de Otros: 2% de 30% → 0.02 × 0.30 = 0.006.",
+                "Paso 4": "Sumamos las probabilidades obtenidas: 0.05 + 0.10 + 0.006 = 0.156 (15.6%)."
+            }
+        },
+        {
+            "enunciado": "En el mismo contexto del TEC, se elige un estudiante al azar y resulta ser feo. ¿Cuál es la probabilidad de que sea de Cartago?",
+            "solucion_correcta": "P(Cartago|Feo) = P(Feo|Cartago) × P(Cartago) / P(Feo) = (0.10 × 0.50) / 0.156 ≈ 0.3205 (32.05%)",
+            "conceptos_clave": [
+                "Teorema de Bayes",
+                "Probabilidad condicional",
+                "Probabilidad a posteriori"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Usamos el Teorema de Bayes: P(Cartago|Feo) = P(Feo|Cartago) × P(Cartago) / P(Feo).",
+                "Paso 2": "Calculamos P(Feo|Cartago) × P(Cartago) = 0.10 × 0.50 = 0.05.",
+                "Paso 3": "Retomamos P(Feo) = 0.156 del ejercicio anterior.",
+                "Paso 4": "Dividimos: 0.05 / 0.156 ≈ 0.3205.",
+                "Interpretación": "Hay un 32.05% de probabilidad de que un estudiante feo elegido al azar sea de Cartago."
+            }
+        },
+        {
+            "enunciado": "Una empresa tiene dos servicios de reparación. El primero tiene un 90% de satisfacción, el segundo tiene un 50% de satisfacción. Por políticas de la empresa y costos, solo acepta un margen de satisfacción superior al 60%. ¿Cuál es el máximo porcentaje de servicios que pueden asignarse al segundo servicio sin violar esta política?",
+            "solucion_correcta": "Sea \\( x \\) el porcentaje asignado al segundo servicio (en decimal). La satisfacción promedio debe ser >60%:\n\n\\( 0.90(1 - x) + 0.50x > 0.60 \\)\n\nResolviendo:\n\\( 0.90 - 0.90x + 0.50x > 0.60 \\)\n\\( 0.90 - 0.40x > 0.60 \\)\n\\( -0.40x > -0.30 \\)\n\\( x < 0.75 \\)\n\nEl máximo porcentaje para el segundo servicio es **75%**.",
+            "conceptos_clave": [
+                "Desigualdades lineales",
+                "Promedio ponderado",
+                "Optimización bajo restricciones"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Definir \\( x \\) como la fracción asignada al segundo servicio.",
+                "Paso 2": "Plantear desigualdad para la satisfacción promedio: \\( 0.90(1 - x) + 0.50x > 0.60 \\).",
+                "Paso 3": "Resolver la desigualdad paso a paso, invirtiendo el signo al dividir por negativo.",
+                "Resultado": "El segundo servicio puede recibir hasta el 75% de las asignaciones para mantener una satisfacción >60%."
+            }
+        },
+        {
+            "enunciado": "Bajo el mismo contexto de la empresa con dos servicios de reparación, suponga que un cliente quedó satisfecho. Si se asigna el 75% de los servicios al segundo taller (50% satisfacción) y el 25% al primero (90% satisfacción), ¿cuál es la probabilidad de que el cliente satisfecho haya estado en el taller 2?",
+            "solucion_correcta": "Aplicamos el Teorema de Bayes:\n\n\\[ P(\\text{Taller 2}|\\text{Satisfecho}) = \\frac{P(\\text{Satisfecho}|\\text{Taller 2}) \\times P(\\text{Taller 2})}{P(\\text{Satisfecho})} \\]\n\nDonde:\n- \\[ P(\\text{Satisfecho}) = 0.25 \\times 0.90 + 0.75 \\times 0.50 = 0.225 + 0.375 = 0.60 \\]\n- Numerador: \\[ 0.50 \\times 0.75 = 0.375 \\]\n\nResultado:\n\\[ \\frac{0.375}{0.60} = 0.625 \\text{ (62.5%)} \\]",
+            "conceptos_clave": [
+                "Teorema de Bayes",
+                "Probabilidad condicional",
+                "Probabilidad total"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Calculamos la probabilidad total de satisfacción \\[ P(\\text{Satisfecho}) \\] como promedio ponderado.",
+                "Paso 2": "Calculamos la probabilidad conjunta \\[ P(\\text{Satisfecho} \\cap \\text{Taller 2}) \\].",
+                "Paso 3": "Aplicamos Bayes para encontrar la probabilidad condicional inversa.",
+                "Interpretación": "Aunque el Taller 2 tiene menor satisfacción individual, al asignarle el 75% de los casos, es responsable del 62.5% de los clientes satisfechos."
+            }
+        }
+    ]
+}

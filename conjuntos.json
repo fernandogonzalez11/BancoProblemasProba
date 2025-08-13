@@ -81,6 +81,27 @@
                 "Eventos complementarios"
             ],
             "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "Luis y Mario juegan partidos repetidamente hasta que uno tenga 2 victorias más que el otro. Determine si es posible que el juego termine exactamente después de 5 partidos.",
+            "solucion_correcta": "0 (imposible)",
+            "conceptos_clave": [
+                "Conteo de estados",
+                "Progresión de diferencias",
+                "Eventos imposibles"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Analisis_de_diferencias": {
+                    "Regla": "El juego termina cuando |Victorias_Luis - Victorias_Mario| = 2",
+                    "Despues_de_4_partidos": "La máxima diferencia posible es 4-0 o 0-4 (diferencia 4, ya habría terminado). Para continuar al 5to partido, la diferencia después de 4 debe ser 1 (ej: 3-1). Pero entonces el 5to partido crearía diferencias de 2 (si gana el líder) o 0 (si pierde), terminando el juego.",
+                    "Conclusion": "No existe secuencia donde el juego termine exactamente en el 5to partido."
+                },
+                "Ejemplos": {
+                    "Caso_4_partidos": "3-1 → Si gana el líder en el 5to: 4-1 (termina con diferencia 3). Si pierde: 3-2 (termina con diferencia 1, no cumple).",
+                    "Caso_alternativo": "2-2 después de 4 partidos → El 5to partido genera 3-2 o 2-3 (diferencia 1, no cumple la condición de terminación)."
+                }
+            }
         }
     ]
 }
