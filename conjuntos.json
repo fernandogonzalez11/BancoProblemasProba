@@ -102,6 +102,31 @@
                     "Caso_alternativo": "2-2 después de 4 partidos → El 5to partido genera 3-2 o 2-3 (diferencia 1, no cumple la condición de terminación)."
                 }
             }
+        },
+        {
+            "enunciado": "Dado el lanzamiento de 3 dados, considere los eventos: A (suma par), B (al menos un número primo), y C (todos los números diferentes). Calcule la probabilidad de P[(A ∪ B) - (A ∩ B)].",
+            "solucion_correcta": "P[(A ∪ B) - (A ∩ B)] = P(A) + P(B) - 2P(A ∩ B) = 0.5 + 0.875 - 2 × 0.4375 = 0.5",
+            "conceptos_clave": [
+                "Probabilidad de eventos compuestos",
+                "Principio de inclusión-exclusión",
+                "Conteo de resultados en dados"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "Paso_1": {
+                    "Evento_A": "Suma par: Ocurre cuando hay 1 o 3 números pares. Hay 108 casos favorables de 216 totales → P(A) = 0.5."
+                },
+                "Paso_2": {
+                    "Evento_B": "Al menos un primo (2, 3, 5): Complemento de 'ningún primo' = 1 - (4/6)^3 = 0.875."
+                },
+                "Paso_3": {
+                    "Interseccion_A_y_B": "Casos donde la suma es par Y hay al menos un primo. Se calcula contando manualmente o con inclusión-exclusión: P(A ∩ B) = 0.4375."
+                },
+                "Paso_4": {
+                    "Formula_final": "(A ∪ B) - (A ∩ B) es la unión disjunta (solo A o solo B). Se calcula como P(A) + P(B) - 2P(A ∩ B)."
+                },
+                "Resultado": "0.5 (50%)"
+            }
         }
     ]
 }

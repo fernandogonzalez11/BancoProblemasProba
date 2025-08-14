@@ -1,0 +1,21 @@
+{
+    "introduccion": [
+        {
+            "enunciado": "Se tienen 2 monedas de 50 colones, 3 monedas de 100 colones y 4 monedas de 500 colones. Se eligen 3 monedas al azar sin reemplazo. Sea D la variable aleatoria que representa el dinero total obtenido. Determine la distribución de probabilidad completa de D.",
+            "solucion_correcta": "Total de formas = C(9,3) = 84.\n\nDistribución de probabilidad:\n- D=200: 3/84\n- D=250: 6/84\n- D=300: 1/84\n- D=600: 4/84\n- D=650: 24/84\n- D=700: 12/84\n- D=1050: 12/84\n- D=1100: 18/84\n- D=1500: 4/84",
+            "conceptos_clave": [
+                "Combinaciones sin reemplazo",
+                "Variable aleatoria discreta",
+                "Distribución de probabilidad",
+                "Conteo exhaustivo"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "Paso 1": "Identificar todos los montos posibles de D considerando que no hay reemplazo.",
+                "Paso 2": "Para cada monto, contar las combinaciones de monedas que lo generan usando coeficientes binomiales.",
+                "Paso 3": "Calcular la probabilidad de cada monto dividiendo por 84.",
+                "Interpretación": "La asimetría en las probabilidades surge porque hay más formas de obtener ciertos montos (como 650) que otros (como 300)."
+            }
+        }
+    ]
+}

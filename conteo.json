@@ -17,6 +17,35 @@
         "Principio multiplicativo"
       ],
       "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "Se tienen 10 bolitas rojas y 1 verde. Se extraen bolas con el siguiente criterio: si es roja, no se devuelve y se añade 1 verde; si es verde, no se devuelve. El proceso termina cuando se han sacado 2 bolas verdes en total. ¿Cuál es la probabilidad de que se extraigan exactamente 4 bolas?",
+      "solucion_correcta": {
+        "VRRV": {
+          "explicacion": "Primera verde (1/11), segunda roja (10/10), tercera roja (9/10), cuarta verde (2/10: 1 original + 1 añadida)",
+          "probabilidad": "(1/11) × 1 × (9/10) × (2/10) = 18/1100 ≈ 0.01636"
+        },
+        "RVRV": {
+          "explicacion": "Primera roja (10/11, añade 1 verde → 2 verdes), segunda verde (2/11), tercera roja (9/10), cuarta verde (2/10)",
+          "probabilidad": "(10/11) × (2/11) × (9/10) × (2/10) = 360/12100 ≈ 0.02975"
+        },
+        "RRVV": {
+          "explicacion": "Primera roja (10/11, añade 1 verde → 2 verdes), segunda roja (9/11, añade 1 verde → 3 verdes), tercera verde (3/11), cuarta verde (2/10)",
+          "probabilidad": "(10/11) × (9/11) × (3/11) × (2/10) = 540/13310 ≈ 0.04057"
+        },
+        "total": "0.01636 + 0.02975 + 0.04057 ≈ 0.08668 (8.67%)",
+        "comprobacion": "Suma de probabilidades de todos los casos posibles donde se sacan exactamente 4 bolas con 2 verdes"
+      },
+      "conceptos_clave": [
+        "Probabilidad condicional",
+        "Procesos de Markov",
+        "Modelos de urna no constante"
+      ],
+      "dificultad": "avanzado",
+      "explicacion": {
+        "detalle": "Cada caso considera el cambio dinámico en la composición de la urna después de cada extracción, especialmente la adición de bolas verdes al sacar rojas.",
+        "importante": "En RVRV y RRVV, después de sacar la primera roja, la cantidad de verdes aumenta, afectando las probabilidades de los siguientes eventos."
+      }
     }
   ],
   "permutaciones": [
@@ -121,6 +150,25 @@
         "Combinaciones con restricciones"
       ],
       "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "En una baraja estándar de 52 cartas (13 valores × 4 palos), ¿cuántas manos de 5 cartas forman un 'full' (3 cartas del mismo valor y 2 cartas de otro mismo valor)?",
+      "solucion_correcta": "Un 'full' se cuenta así:\n1. Elegir el valor para el trío: C(13,1) = 13.\n2. Elegir los palos para el trío: C(4,3) = 4.\n3. Elegir el valor para la pareja: C(12,1) = 12.\n4. Elegir los palos para la pareja: C(4,2) = 6.\nMultiplicando: 13 × 4 × 12 × 6 = 3744 casos.\nLa probabilidad es 3744 / C(52,5) = 3744 / 2598960 ≈ 0.00144 (0.144%).",
+      "conceptos_clave": [
+        "Combinaciones",
+        "Conteo de manos de póker",
+        "Principio multiplicativo",
+        "Probabilidad clásica"
+      ],
+      "dificultad": "intermedio",
+      "explicacion": {
+        "Paso 1": "Elegimos el valor para el trío de entre los 13 disponibles.",
+        "Paso 2": "Seleccionamos 3 palos de los 4 posibles para ese valor.",
+        "Paso 3": "Elegimos el valor para la pareja de entre los 12 restantes.",
+        "Paso 4": "Seleccionamos 2 palos de los 4 posibles para esa pareja.",
+        "Paso 5": "Multiplicamos todas las posibilidades para obtener 3744 combinaciones.",
+        "Interpretación": "El full es una de las manos fuertes del póker, pero su probabilidad es baja (aprox. 0.144%) debido a la combinación simultánea de dos coincidencias de valor."
+      }
     }
   ],
   "objetos_en_celdas": [
@@ -133,6 +181,58 @@
         "Método de stars and bars"
       ],
       "dificultad": "intermedio"
+    },
+    {
+      "enunciado": "Hay 6 atletas y 21 maletines idénticosCalcule las formas de repartir los maletines con al menos 3 por atleta.",
+      "solucion_correcta": {
+        "1_maletines": {
+          "metodo": "Distribuir primero 3 maletines a cada atleta (6×3=18), luego repartir los 3 restantes sin restricciones.",
+          "formula": "C(3+6-1, 6-1) = C(8,5) = 56",
+          "explicacion": "Usar 'stars and bars' para repartir 3 maletines idénticos entre 6 atletas."
+        }
+      },
+      "conceptos_clave": [
+        "Combinaciones con repetición",
+        "Principio de distribución",
+        "Restricciones en el conteo"
+      ],
+      "dificultad": "intermedio",
+      "explicacion": {
+        "1_maletines": {
+          "detalle": "Primero asignar el mínimo (3) a cada atleta, luego distribuir el excedente (3) libremente."
+        }
+      }
+    },
+    {
+      "enunciado": "Hay 6 atletas y 10 sudaderas distintas. Calcule las formas de repartirlas con máximo 2 sudaderas por atleta.",
+      "solucion_correcta": {
+        "casos": [
+          {
+            "descripcion": "5 atletas reciben 2 sudaderas, 1 atleta recibe 0",
+            "calculo": "C(10,2) × C(8,2) × C(6,2) × C(4,2) × C(2,2) × C(6,1) = 45 × 28 × 15 × 6 × 1 × 6 = 680400",
+            "explicacion": "Seleccionar pares de sudaderas para 5 atletas y elegir quién no recibe"
+          },
+          {
+            "descripcion": "4 atletas reciben 2 sudaderas, 2 atletas reciben 1",
+            "calculo": "C(10,2) × C(8,2) × C(6,2) × C(4,2) × C(6,4) × 2! = 45 × 28 × 15 × 6 × 15 × 2 = 3402000",
+            "explicacion": "Seleccionar pares para 4 atletas y sudaderas individuales para 2"
+          }
+        ],
+        "total": "680400 + 3402000 = 4082400 formas"
+      },
+      "conceptos_clave": [
+        "Combinaciones",
+        "Permutaciones",
+        "Principio de multiplicación",
+        "Distribución con restricciones"
+      ],
+      "dificultad": "avanzado",
+      "explicacion": {
+        "paso_1": "Dividir en casos según cuántos atletas reciben 2 sudaderas",
+        "paso_2": "Para cada caso, calcular las formas de seleccionar sudaderas",
+        "paso_3": "Considerar la asignación de atletas a los grupos",
+        "nota": "Las sudaderas son distintas, por lo que el orden de selección importa"
+      }
     }
   ],
   "probabilidades_equiprobables": [
