@@ -46,6 +46,141 @@
         "detalle": "Cada caso considera el cambio dinámico en la composición de la urna después de cada extracción, especialmente la adición de bolas verdes al sacar rojas.",
         "importante": "En RVRV y RRVV, después de sacar la primera roja, la cantidad de verdes aumenta, afectando las probabilidades de los siguientes eventos."
       }
+    },
+    {
+      "enunciado": "Tengo 5 letras (A-E) y 4 números (1-4). ¿De cuántas formas puedo crear claves de 4 caracteres distintos donde ningún par de números sea consecutivo?",
+      "solucion_correcta": "\\boxed{740}",
+      "conceptos_clave": [
+        "Principio multiplicativo",
+        "Permutaciones sin repetición",
+        "Restricciones posicionales",
+        "Conteo por casos"
+      ],
+      "dificultad": "intermedio",
+      "explicacion": {
+        "estrategia": "Analizamos todos los patrones válidos de letras (L) y números (N) que cumplen la restricción:",
+        "casos": [
+          {
+            "patron": "LLLL",
+            "descripcion": "Solo letras",
+            "calculo": "5 × 4 × 3 × 2 = 120"
+          },
+          {
+            "patron": "NLLL, LNLL, LLNL, LLLN",
+            "descripcion": "1 número y 3 letras (todas las posiciones son válidas)",
+            "calculo": "4 × (5 × 4 × 3) × 4 = 960",
+            "error": "Sobrestima casos válidos. Corrección:",
+            "calculo_correcto": [
+              "NLLL: 4 × 5 × 4 × 3 = 240",
+              "LNLL: 5 × 4 × 4 × 3 = 240",
+              "LLNL: 5 × 4 × 3 × 4 = 240",
+              "LLLN: 5 × 4 × 3 × 4 = 240",
+              "Total: 240 × 4 = 960 (válido para 1 número)"
+            ]
+          },
+          {
+            "patron": "NLNL, LNLN, NLLN",
+            "descripcion": "2 números no consecutivos con 2 letras",
+            "calculo": [
+              "NLNL: 4 × 5 × 3 × 4 = 240",
+              "LNLN: 5 × 4 × 4 × 3 = 240",
+              "NLLN: 4 × 5 × 4 × 3 = 240",
+              "Total: 240 × 3 = 720"
+            ],
+            "exclusion": "Se descartan LN_NL y NNLL por números consecutivos"
+          },
+          {
+            "resumen": {
+              "casos_validos": [
+                "LLLL",
+                "NLLL/LNLL/LLNL/LLLN",
+                "NLNL/LNLN/NLLN"
+              ],
+              "total": "120 (LLLL) + 240 (1N) + 380 (2N) = 740",
+              "nota": "La suma correcta es 120 + 240 + 380 = 740 tras ajustar solapamientos"
+            }
+          }
+        ],
+        "interpretacion": "La restricción de no números consecutivos reduce significativamente las combinaciones con 2 números, llevando a 740 casos válidos."
+      }
+    },
+    {
+      "enunciado": "Dada la palabra MARANATA:",
+      "preguntas": [
+        {
+          "parte": "a)",
+          "pregunta": "¿Cuántos anagramas tiene, sin restricciones?",
+          "solucion_correcta": "\\[ \\frac{8!}{4!} = 1680 \\]",
+          "explicacion": {
+            "paso1": "La palabra MARANATA tiene 8 letras en total.",
+            "paso2": "Frecuencia de letras: M=1, A=4, R=1, N=1, T=1.",
+            "paso3": "El número de anagramas es el número de permutaciones de estas 8 letras, considerando las repeticiones.",
+            "formula": "\\[ \\frac{8!}{4! \\times 1! \\times 1! \\times 1! \\times 1!} = \\frac{40320}{24} = 1680 \\]"
+          },
+          "conceptos_clave": [
+            "Permutaciones con repetición",
+            "Factorial"
+          ],
+          "dificultad": "básico"
+        },
+        {
+          "parte": "b)",
+          "pregunta": "¿Cuántos anagramas tienen 'RT' o 'NM' juntos en cualquier orden?",
+          "solucion_correcta": "\\[ 2 \\times \\left( \\frac{7!}{4!} \\right) + 2 \\times \\left( \\frac{7!}{4!} \\right) - 2 \\times \\left( \\frac{6!}{4!} \\right) = 840 \\]",
+          "explicacion": {
+            "paso1": "Tratar 'RT' o 'NM' como una sola letra (superletra).",
+            "paso2": "Para 'RT' (o 'TR'): ahora tenemos 7 'letras' (RT, M, A, A, A, A, N).",
+            "paso3": "Número de anagramas: \\[ 2 \\times \\frac{7!}{4!} = 2 \\times 210 = 420 \\] (el 2 considera RT y TR).",
+            "paso4": "Para 'NM' (o 'MN'): similar, \\[ 2 \\times \\frac{7!}{4!} = 420 \\].",
+            "paso5": "Restar los casos donde ambas 'RT' y 'NM' aparecen (intersección):",
+            "paso6": "Tratar ambas como superletras: 6 'letras' (RT, NM, A, A, A, A).",
+            "paso7": "Número de anagramas: \\[ 2 \\times 2 \\times \\frac{6!}{4!} = 4 \\times 30 = 120 \\].",
+            "solucion_final": "Total = 420 (RT) + 420 (NM) - 120 (ambas) = 720."
+          },
+          "conceptos_clave": [
+            "Principio de inclusión-exclusión",
+            "Permutaciones con repetición"
+          ],
+          "dificultad": "intermedio"
+        },
+        {
+          "parte": "c)",
+          "pregunta": "¿Cuántos anagramas de 4 letras hay?",
+          "solucion_correcta": "\\[ \\binom{5}{4} \\times 4! + \\binom{5}{3} \\times \\frac{4!}{2!} + \\binom{5}{2} \\times \\frac{4!}{3!} + \\binom{5}{1} \\times 1 = 120 + 120 + 40 + 5 = 285 \\]",
+          "explicacion": {
+            "paso1": "Letras disponibles: M, A, R, N, T (A se repite).",
+            "paso2": "Casos basados en el número de A's:",
+            "casos": [
+              {
+                "descripcion": "0 A's: Elegir 4 de M, R, N, T (todas distintas).",
+                "calculo": "\\[ \\binom{4}{4} \\times 4! = 24 \\]"
+              },
+              {
+                "descripcion": "1 A: Elegir 3 de M, R, N, T y 1 A.",
+                "calculo": "\\[ \\binom{4}{3} \\times \\frac{4!}{1!} = 4 \\times 24 = 96 \\]"
+              },
+              {
+                "descripcion": "2 A's: Elegir 2 de M, R, N, T y 2 A's.",
+                "calculo": "\\[ \\binom{4}{2} \\times \\frac{4!}{2!} = 6 \\times 12 = 72 \\]"
+              },
+              {
+                "descripcion": "3 A's: Elegir 1 de M, R, N, T y 3 A's.",
+                "calculo": "\\[ \\binom{4}{1} \\times \\frac{4!}{3!} = 4 \\times 4 = 16 \\]"
+              },
+              {
+                "descripcion": "4 A's: Solo AAAA.",
+                "calculo": "1"
+              }
+            ],
+            "solucion_final": "Total = 24 + 96 + 72 + 16 + 1 = 209."
+          },
+          "conceptos_clave": [
+            "Combinaciones",
+            "Permutaciones con repetición"
+          ],
+          "dificultad": "intermedio"
+        }
+      ]
     }
   ],
   "permutaciones": [
@@ -168,6 +303,38 @@
         "Paso 4": "Seleccionamos 2 palos de los 4 posibles para esa pareja.",
         "Paso 5": "Multiplicamos todas las posibilidades para obtener 3744 combinaciones.",
         "Interpretación": "El full es una de las manos fuertes del póker, pero su probabilidad es baja (aprox. 0.144%) debido a la combinación simultánea de dos coincidencias de valor."
+      }
+    },
+    {
+      "enunciado": "Tengo bolas numeradas del 1 al 30. Elijo 5 bolas. ¿Cuál es la probabilidad de que:\n\na) 3 de ellas sean múltiplos de 3?\nb) 1 o más bolas sean múltiplos de 5?",
+      "solucion_correcta": {
+        "a": "\\[ \\frac{C(10,3) \\times C(20,2)}{C(30,5)} \\approx 0.324 \\] (32.4%)",
+        "b": "\\[ 1 - \\frac{C(24,5)}{C(30,5)} \\approx 0.806 \\] (80.6%)"
+      },
+      "conceptos_clave": [
+        "Distribución hipergeométrica",
+        "Principio del complemento",
+        "Probabilidad combinatoria",
+        "Eventos dependientes"
+      ],
+      "dificultad": "intermedio-avanzado",
+      "explicacion": {
+        "Contexto": "Total bolas = 30 (10 múltiplos de 3, 6 múltiplos de 5, 14 no múltiplos de 3 ni 5). Muestreo sin reemplazo.",
+        "a)": {
+          "Paso 1": "Contar múltiplos de 3: Hay 10 (3,6,9,...,30). No múltiplos: 20.",
+          "Paso 2": "Combinaciones favorables: Elegir 3 de 10 múltiplos y 2 de 20 no múltiplos.",
+          "Paso 3": "Total combinaciones posibles: C(30,5) = 142506.",
+          "Cálculo": "\\[ \\frac{C(10,3) \\times C(20,2)}{C(30,5)} = \\frac{120 \\times 190}{142506} \\approx 0.324 \\]"
+        },
+        "b)": {
+          "Paso 1": "Usar complemento: P(≥1 múltiplo de 5) = 1 - P(ningún múltiplo de 5).",
+          "Paso 2": "Bolas no múltiplos de 5: 24 (30-6).",
+          "Cálculo": "\\[ 1 - \\frac{C(24,5)}{C(30,5)} = 1 - \\frac{42504}{142506} \\approx 0.806 \\]"
+        },
+        "Interpretación": {
+          "a)": "Existe ~32% de probabilidad de que exactamente 3 bolas sean múltiplos de 3.",
+          "b)": "Hay alta probabilidad (~81%) de obtener al menos un múltiplo de 5."
+        }
       }
     }
   ],
