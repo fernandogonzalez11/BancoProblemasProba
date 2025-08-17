@@ -127,5 +127,610 @@
                 }
             }
         }
+    ],
+    "normal": [
+        {
+            "problema": {
+                "enunciado": "Pesos de hombres ~ N(70, 100), mujeres ~ N(60, 64). 4 hombres y 3 mujeres se suben a una romana.",
+                "preguntas": [
+                    {
+                        "parte": "a)",
+                        "pregunta": "Probabilidad de que el peso total sea >530 kg",
+                        "solucion_correcta": "\\boxed{0.0020} \\text{ (0.20%)}",
+                        "conceptos_clave": [
+                            "Distribución normal",
+                            "Suma de variables aleatorias",
+                            "Estandarización"
+                        ],
+                        "explicacion": {
+                            "paso_1": {
+                                "descripcion": "Calcular media y varianza del peso total (T)",
+                                "calculo": [
+                                    "Hombres: 4 × N(70, 100) → Media = 4×70 = 280, Varianza = 4×100 = 400",
+                                    "Mujeres: 3 × N(60, 64) → Media = 3×60 = 180, Varianza = 3×64 = 192",
+                                    "Total: T ~ N(280 + 180, 400 + 192) = N(460, 592)"
+                                ]
+                            },
+                            "paso_2": {
+                                "descripcion": "Estandarizar y calcular P(T > 530)",
+                                "calculo": [
+                                    "Z = (530 - 460)/√592 ≈ 70/24.33 ≈ 2.88",
+                                    "P(T > 530) = P(Z > 2.88) = 1 - Φ(2.88) = 1 - 0.9980 = 0.0020"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "parte": "b)",
+                        "pregunta": "Peso acumulado que deja el 3% de los casos por debajo",
+                        "solucion_correcta": "\\boxed{415.4 \\text{ kg}}",
+                        "conceptos_clave": [
+                            "Cuantiles normales",
+                            "Valor crítico"
+                        ],
+                        "explicacion": {
+                            "paso_1": {
+                                "descripcion": "Identificar el percentil 3% en la normal estándar",
+                                "calculo": "Φ(z) = 0.03 → z = -1.88 (dato)"
+                            },
+                            "paso_2": {
+                                "descripcion": "Convertir a la escala original del peso total",
+                                "calculo": [
+                                    "T = μ + zσ = 460 + (-1.88)(√592)",
+                                    "T ≈ 460 - 1.88×24.33 ≈ 460 - 45.7 ≈ 414.3 kg"
+                                ]
+                            },
+                            "nota": "El resultado exacto es 414.3 kg, pero puede redondearse a 415 kg por precisión"
+                        }
+                    }
+                ],
+                "notas_adicionales": {
+                    "a_precision": "Usando √592 ≈ 24.331 y Φ(2.88) = 0.9980 exacto.",
+                    "b_ajuste": "Para mayor precisión: -1.88079×24.331 ≈ -45.753 → 460 - 45.753 = 414.247 kg."
+                }
+            }
+        },
+        {
+            "enunciado": "El salario de una población sigue X ~ N(500000, 10⁸). Se busca el tamaño de muestra n tal que P(490000 ≤ X̄ ≤ 510000) = 0.90.",
+            "solucion_correcta": "\\boxed{3}",
+            "conceptos_clave": [
+                "Distribución normal",
+                "Teorema del Límite Central",
+                "Intervalos de confianza",
+                "Error estándar"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Parámetros de la distribución del promedio muestral X̄",
+                    "calculo": [
+                        "X̄ ~ N(μ, σ²/n)",
+                        "μ = 500000",
+                        "σ = √10⁸ = 10000",
+                        "Error estándar = σ/√n = 10000/√n"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Estandarización del intervalo",
+                    "calculo": [
+                        "P(490000 ≤ X̄ ≤ 510000) = 0.90",
+                        "Equivale a P(X̄ ≤ 510000) - P(X̄ ≤ 490000) = 0.90",
+                        "Por simetría: P(X̄ ≤ 510000) = 0.95 y P(X̄ ≤ 490000) = 0.05"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Cálculo del percentil 95%",
+                    "calculo": [
+                        "Para X̄ = 510000:",
+                        "Z = (510000 - 500000)/(10000/√n) = 10000√n/10000 = √n",
+                        "Φ(√n) = 0.95 → √n = 1.645 (valor z para 95%)",
+                        "n = (1.645)² ≈ 2.706 ≈ 3 (redondeando al entero superior)"
+                    ]
+                },
+                "verificacion": {
+                    "n=3": {
+                        "error_estandar": "10000/√3 ≈ 5773.5",
+                        "z_score": "(510000-500000)/5773.5 ≈ 1.732",
+                        "probabilidad": "Φ(1.732) ≈ 0.958 > 0.95 (cumple)"
+                    },
+                    "n=2": {
+                        "error_estandar": "10000/√2 ≈ 7071.07",
+                        "z_score": "10000/7071.07 ≈ 1.414",
+                        "probabilidad": "Φ(1.414) ≈ 0.921 < 0.95 (no cumple)"
+                    }
+                },
+                "interpretacion": "El mínimo tamaño de muestra requerido es 3 para garantizar que el 90% de los promedios muestrales caigan en el intervalo [490000, 510000]."
+            }
+        },
+        {
+            "problema": {
+                "enunciado": "El peso de un melón sigue X ~ N(400, 100) gramos. Una bolsa contiene 7 melones.",
+                "partes": [
+                    {
+                        "parte": "a)",
+                        "pregunta": "Probabilidad de que una bolsa pese menos de 3000 gramos",
+                        "solucion_correcta": "\\boxed{1} \\text{ (100%)}",
+                        "explicacion": {
+                            "distribucion_total": "T ~ N(7×400, 7×100) = N(2800, 700)",
+                            "calculo": "P(T < 3000) = P(Z < (3000-2800)/√700) ≈ P(Z < 7.56) ≈ 1"
+                        }
+                    },
+                    {
+                        "parte": "b)",
+                        "pregunta": "Peso límite para descartar el 5% de las bolsas más livianas",
+                        "solucion_correcta": "\\boxed{2756\\text{ gramos}}",
+                        "explicacion": {
+                            "percentil_5": "Encontrar t tal que P(T < t) = 0.05",
+                            "z_score": "Φ⁻¹(0.05) = -1.645",
+                            "calculo": "t = μ + zσ = 2800 + (-1.645)×√700 ≈ 2800 - 43.6 ≈ 2756.4"
+                        }
+                    }
+                ],
+                "conceptos_clave": [
+                    "Distribución normal",
+                    "Suma de variables aleatorias",
+                    "Percentiles"
+                ],
+                "dificultad": "intermedio"
+            }
+        },
+        {
+            "enunciado": "Un ascensor soporta 1400 kg. El peso de una persona sigue X ~ N(70, 15²) kg. Determinar el máximo número de personas (n) que pueden subir garantizando que el 95% de las veces no se exceda el límite.",
+            "solucion_correcta": "\\boxed{18}",
+            "conceptos_clave": [
+                "Distribución normal",
+                "Suma de variables aleatorias",
+                "Percentiles"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Distribución del peso total (T) para n personas",
+                    "calculo": [
+                        "T ~ N(n × 70, n × 15²) = N(70n, 225n)",
+                        "σ_T = √(225n) = 15√n"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Establecer la condición de seguridad (95%)",
+                    "calculo": [
+                        "Queremos P(T ≤ 1400) ≥ 0.95",
+                        "Estandarización: P(Z ≤ (1400 - 70n)/(15√n)) ≥ 0.95",
+                        "Percentil 95%: Φ⁻¹(0.95) = 1.65",
+                        "Resolver: (1400 - 70n)/(15√n) = 1.65"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Resolver la ecuación no lineal para n",
+                    "metodo": "Aproximación numérica o prueba de enteros",
+                    "solucion": [
+                        "Ecuación: 1400 - 70n = 1.65 × 15√n → 1400 - 70n = 24.75√n",
+                        "Para n=18:",
+                        "Lado izquierdo: 1400 - 70×18 = 1400 - 1260 = 140",
+                        "Lado derecho: 24.75×√18 ≈ 24.75×4.24 ≈ 105",
+                        "140 > 105 → n=18 cumple (sobre-estimado)",
+                        "Para n=19:",
+                        "1400 - 70×19 = 70",
+                        "24.75×√19 ≈ 108",
+                        "70 < 108 → n=19 no cumple"
+                    ],
+                    "conclusion": "El máximo n que cumple es 18"
+                },
+                "verificacion": {
+                    "n=18": [
+                        "Media: 70×18 = 1260 kg",
+                        "σ_T = 15√18 ≈ 63.64 kg",
+                        "Z = (1400 - 1260)/63.64 ≈ 2.20",
+                        "P(T ≤ 1400) = Φ(2.20) ≈ 0.986 (98.6%)"
+                    ],
+                    "n=19": [
+                        "Media: 1330 kg",
+                        "σ_T ≈ 65.19 kg",
+                        "Z ≈ 1.07",
+                        "P(T ≤ 1400) ≈ 0.857 (85.7%)"
+                    ]
+                },
+                "interpretacion": "Con 18 personas, hay un 98.6% de probabilidad de no exceder el límite, mientras que con 19 baja al 85.7%."
+            }
+        },
+        {
+            "enunciado": "Un carro tiene una distancia de frenado distribuida normalmente con media de 60 m y desviación estándar de 20 m. Otro vehículo tiene una distancia de frenado distribuida normalmente con media de 40 m y varianza de 225 m². Si se topan de frente y ambos frenan inmediatamente, ¿cuál es la probabilidad de que choquen?",
+            "solucion_correcta": {
+                "paso1": "Definimos Y = D₁ + D₂ ~ N(μ₁+μ₂, σ₁²+σ₂²) = N(100, 400+225) = N(100, 625)",
+                "paso2": "P(Colisión) = P(Y ≥ 100) = P(Z ≥ (100-100)/25) = P(Z ≥ 0) = 0.5",
+                "resultado": "La probabilidad de colisión es exactamente 50%"
+            },
+            "conceptos_clave": [
+                "Distribución Normal",
+                "Suma de variables normales",
+                "Probabilidad de colisión",
+                "Distribución de distancias de frenado"
+            ],
+            "dificultad": "intermedio",
+            "explicacion_adicional": {
+                "normal_sum": "La suma de variables normales independientes es normal con media suma de medias y varianza suma de varianzas",
+                "interpretacion": "Como la distancia crítica (100m) coincide exactamente con la media de la suma, la probabilidad es exactamente 0.5"
+            }
+        },
+        {
+            "enunciado": "Se tiene una muestra X₁, X₂, ..., X₁₅ donde cada Xᵢ ~ N(10i, 2) para i = 1,...,15. Calcule P[X̄ < 79.5]",
+            "solucion_correcta": {
+                "paso1": "Calculamos E[X̄] = (1/15)∑E[Xᵢ] = (1/15)∑10i = (10/15)(15×16/2) = 80",
+                "paso2": "Var(X̄) = (1/15²)∑Var(Xᵢ) = (1/225)×15×2 = 2/15 ≈ 0.1333",
+                "paso3": "X̄ ~ N(80, 2/15) ⇒ P(X̄ < 79.5) = P(Z < (79.5-80)/√(2/15)) = P(Z < -1.3693)",
+                "resultado": "≈ Φ(-1.3693) ≈ 0.0855 (8.55%)"
+            },
+            "conceptos_clave": [
+                "Distribución Normal",
+                "Esperanza de la media muestral",
+                "Varianza de la media muestral",
+                "Variables independientes",
+                "Cálculo de probabilidades normales"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion_adicional": {
+                "linealidad_esperanza": "La esperanza de la media muestral es la media de las esperanzas individuales",
+                "varianza_suma": "La varianza de la suma es la suma de varianzas para variables independientes",
+                "nota_importante": "Aunque las Xᵢ tienen medias diferentes, son independientes y con varianza constante"
+            }
+        },
+        {
+            "enunciado": "Sea X₁, X₂, ..., Xₙ una muestra donde cada Xᵢ ~ N(μᵢ, σᵢ²) con μᵢ = 10i y σᵢ² = 2. Se sabe que P[X̄ < 79.5] = 0.023. ¿Cuál es el valor de n?",
+            "solucion_correcta": {
+                "paso1": "Calculamos E[X̄] = (1/n)∑μᵢ = (1/n)10∑i = (10/n)(n(n+1)/2) = 5(n+1)",
+                "paso2": "Var(X̄) = (1/n²)∑σᵢ² = (1/n²)n×2 = 2/n",
+                "paso3": "P(X̄ < 79.5) = P(Z < (79.5 - 5(n+1))/√(2/n)) = 0.023 ⇒ z = -1,99 (percentil de N(0,1))",
+                "paso4": "Resolviendo: (79.5 - 5(n+1))/√(2/n) = -1,99",
+                "solucion_numerica": "n ≈ 15 (solución exacta n = 15,04 ≈ 15)"
+            },
+            "conceptos_clave": [
+                "Distribución Normal",
+                "Media muestral",
+                "Varianza muestral",
+                "Percentiles normales",
+                "Resolución de ecuaciones no lineales"
+            ],
+            "dificultad": "avanzado"
+        }
+    ],
+    "gamma": [
+        {
+            "enunciado": "Un medicamento tiene un tiempo de efecto perceptible t ~ Gamma(2, 3). Determine la probabilidad de que el efecto persista después de 7 horas.",
+            "solucion_correcta": {
+                "parametros": "Gamma(α=2, β=3) donde α es parámetro de forma y β de tasa",
+                "paso1": "Función de distribución acumulada: P(T ≤ t) = 1 - e^{-βt}(1 + βt)",
+                "paso2": "P(T > 7) = 1 - [1 - e^{-3*7}(1 + 3*7)] = e^{-21}(22) ≈ 1.24 × 10^{-9}",
+                "interpretacion": "La probabilidad es extremadamente baja (≈ 0.000000124%)"
+            },
+            "conceptos_clave": [
+                "Distribución Gamma",
+                "Probabilidad de cola",
+                "Función de distribución acumulada",
+                "Modelado de tiempos de efecto"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion_adicional": {
+                "propiedades_gamma": "Para Gamma(α,β) con α entero, la CDF es P(T≤t) = 1 - e^{-βt}∑_{k=0}^{α-1}(βt)^k/k!",
+                "aplicacion": "Este modelo es útil para tiempos de espera hasta múltiples eventos (aquí α=2 representa dos 'etapas' del efecto)"
+            }
+        }
+    ],
+    "tlc": [
+        {
+            "enunciado": "Taller con 3 servicios (revisión, mantenimiento, reparación) con salarios, probabilidades y gastos fijos mensuales. Determinar número mínimo de servicios (n) para cubrir gastos en el 98% de los meses.",
+            "solucion_correcta": "\\boxed{124}",
+            "conceptos_clave": [
+                "Teorema del Límite Central",
+                "Esperanza y varianza",
+                "Distribución normal",
+                "Percentiles"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Simplificar unidades (dividir por 1000)",
+                    "valores": [
+                        "Salarios: rev=20, mant=30, rep=50",
+                        "Gastos fijos: 3000",
+                        "Probabilidades: P(rev)=0.6, P(mant)=0.3, P(rep)=0.1"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Calcular esperanza y varianza por servicio",
+                    "calculo": [
+                        "E[X] = 20×0.6 + 30×0.3 + 50×0.1 = 26",
+                        "Var(X) = E[X²] - E[X]² = (400×0.6 + 900×0.3 + 2500×0.1) - 26² = 760 - 676 = 84"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Aplicar TLC y condición del 98%",
+                    "teorema": "Sₙ ≈ N(26n, 84n) para n grande",
+                    "condicion": "P(Sₙ ≥ 3000) ≥ 0.98 → P(Sₙ < 3000) ≤ 0.02",
+                    "percentil": "Φ⁻¹(0.02) = -2.05"
+                },
+                "paso_4": {
+                    "descripcion": "Resolver ecuación correctamente",
+                    "ecuacion": "(3000 - 26n)/√(84n) = -2.05",
+                    "solucion_correcta": [
+                        "Reordenar: 26n - 2.05×√(84n) - 3000 = 0",
+                        "Sustituir y = √n: 26y² - 2.05×9.165y - 3000 = 0 → 26y² - 18.79y - 3000 = 0",
+                        "Fórmula cuadrática:",
+                        "y = [18.79 ± √(18.79² + 4×26×3000)] / (2×26)",
+                        "y = [18.79 ± √(353 + 312000)] / 52 ≈ [18.79 ± 558.93]/52",
+                        "Solución positiva: y ≈ (18.79 + 558.93)/52 ≈ 11.11",
+                        "n = y² ≈ 123.5 → Redondear a 124"
+                    ]
+                },
+                "verificacion": {
+                    "n=124": [
+                        "Media: 26×124 = 3224",
+                        "σ = √(84×124) ≈ 102.1",
+                        "Z = (3000 - 3224)/102.1 ≈ -2.19",
+                        "P(Sₙ < 3000) ≈ Φ(-2.19) ≈ 0.014 (1.4% < 2%, cumple)"
+                    ],
+                    "n=123": [
+                        "Media: 3198",
+                        "σ ≈ 101.7",
+                        "Z ≈ -1.95",
+                        "P(Sₙ < 3000) ≈ Φ(-1.95) ≈ 0.0256 (2.56% > 2%, no cumple)"
+                    ]
+                },
+                "interpretacion": "Se requieren **124 servicios/mes** para garantizar con 98% de confianza que los ingresos cubran los gastos fijos. Con 123 servicios, la probabilidad de no cubrirlos sería del 2.56% (ligeramente por encima del 2% máximo permitido)."
+            }
+        },
+        {
+            "enunciado": "El peso de una papa sigue una distribución con media μ = 100g y varianza σ² = 81g². Determinar el número de papas (n) necesario para que el peso promedio esté entre 99g y 101g con probabilidad del 98%.",
+            "solucion_correcta": "\\boxed{488}",
+            "conceptos_clave": [
+                "Teorema del Límite Central",
+                "Distribución muestral de la media",
+                "Intervalos de confianza"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Distribución del promedio muestral (X̄)",
+                    "calculo": [
+                        "X̄ ~ N(μ, σ²/n)",
+                        "μ = 100g",
+                        "σ² = 81g² → σ = 9g",
+                        "Error estándar = σ/√n = 9/√n"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Estandarización del intervalo deseado",
+                    "calculo": [
+                        "P(99 ≤ X̄ ≤ 101) = 0.98",
+                        "P(X̄ ≤ 101) - P(X̄ ≤ 99) = 0.98",
+                        "Por simetría: P(X̄ ≤ 101) = 0.99 y P(X̄ ≤ 99) = 0.01",
+                        "Z para P(X̄ ≤ 101): Φ⁻¹(0.99) ≈ 2.326"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Resolver para n",
+                    "ecuacion": [
+                        "Z = (101 - 100)/(9/√n) = √n/9 = 2.326",
+                        "√n = 2.326 × 9 ≈ 20.934",
+                        "n ≈ (20.934)² ≈ 438.2 → Redondear a 439"
+                    ],
+                    "error_detectado": "¡Esto daría P ≈ 98% solo para el límite superior!",
+                    "correccion": [
+                        "El intervalo es bilateral, usar Φ⁻¹(0.01) = -2.326 para el límite inferior:",
+                        "|(99 - 100)/(9/√n)| = 2.326 → √n/9 = 2.326",
+                        "Misma solución: n ≈ 439 (pero cubre ambos extremos por simetría)"
+                    ]
+                },
+                "paso_4": {
+                    "verificacion": {
+                        "n=439": [
+                            "Error estándar = 9/√439 ≈ 0.430g",
+                            "Z para 101g: (101 - 100)/0.430 ≈ 2.326 → P ≈ 0.99",
+                            "Z para 99g: (99 - 100)/0.430 ≈ -2.326 → P ≈ 0.01",
+                            "P(99 ≤ X̄ ≤ 101) ≈ 0.99 - 0.01 = 0.98 (98%)"
+                        ],
+                        "n=438": [
+                            "Error estándar ≈ 0.431g",
+                            "Z ≈ 2.320 → P ≈ 0.9898",
+                            "Diferencia: 0.9796 (97.96% < 98%)"
+                        ]
+                    },
+                    "conclusion": "n=439 es el mínimo que satisface la condición exacta"
+                },
+                "interpretacion": "Se requieren al menos 439 papas para garantizar que el peso promedio esté en [99g, 101g] con un 98% de probabilidad."
+            }
+        },
+        {
+            "enunciado": "Para una población con media μ = 50 kg, se sabe que P(X̄ < 51) = 0.9 para muestras de tamaño n = 50. Determinar la varianza poblacional σ².",
+            "solucion_correcta": "\\boxed{30.5\\text{ kg²}}",
+            "conceptos_clave": [
+                "Distribución muestral de la media",
+                "Teorema del Límite Central",
+                "Estandarización",
+                "Percentiles normales"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Distribución del promedio muestral X̄",
+                    "calculo": [
+                        "X̄ ~ N(μ, σ²/n)",
+                        "μ = 50 kg",
+                        "n = 50",
+                        "Error estándar = σ/√50"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Estandarización de la probabilidad dada",
+                    "calculo": [
+                        "P(X̄ < 51) = 0.9",
+                        "Z = (51 - 50)/(σ/√50) = √50/σ",
+                        "Φ(√50/σ) = 0.9"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Encontrar el valor z correspondiente al 90%",
+                    "detalle": [
+                        "Φ⁻¹(0.9) ≈ 1.28 (percentil 90%)",
+                        "Por tanto: √50/σ = 1.28"
+                    ]
+                },
+                "paso_4": {
+                    "descripcion": "Resolver para σ²",
+                    "calculo": [
+                        "σ = √50 / 1.28 ≈ 7.071 / 1.28 ≈ 5.52 kg",
+                        "σ² ≈ (5.52)² ≈ 30.5 kg²"
+                    ]
+                },
+                "verificacion": {
+                    "calculo_alternativo": "(√50/1.28)² = 50/1.6384 ≈ 30.5 kg²",
+                    "consistencia": "Si σ² = 30.5 kg² → σ ≈ 5.52 kg",
+                    "probabilidad_resultante": "Z = √50/5.52 ≈ 1.28 → Φ(1.28) ≈ 0.9 (consistente)"
+                },
+                "interpretacion": "La varianza poblacional que satisface P(X̄ < 51) = 0.9 es efectivamente ≈30.5 kg²."
+            }
+        },
+        {
+            "enunciado": "Una población tiene peso distribuido normalmente con P(X ≤ 71) = 0.3 y P(X ≥ 62) = 0.8. Determinar la media (μ) y la desviación estándar (σ).",
+            "solucion_correcta": {
+                "media": "\\boxed{86.39}",
+                "desviacion_estandar": "\\boxed{29.03}"
+            },
+            "conceptos_clave": [
+                "Distribución normal",
+                "Estandarización",
+                "Percentiles",
+                "Sistema de ecuaciones"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Estandarizar las probabilidades dadas",
+                    "detalle": [
+                        "Para P(X ≤ 71) = 0.3:",
+                        "Φ⁻¹(0.3) ≈ -0.53 → (71 - μ)/σ = -0.53",
+                        "Ecuación 1: 71 - μ = -0.53σ",
+                        "",
+                        "Para P(X ≥ 62) = 0.8 (equivalente a P(X ≤ 62) = 0.2):",
+                        "Φ⁻¹(0.2) ≈ -0.84 → (62 - μ)/σ = -0.84",
+                        "Ecuación 2: 62 - μ = -0.84σ"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Resolver el sistema de ecuaciones",
+                    "metodo": "Restar Ecuación 2 de la Ecuación 1",
+                    "calculo": [
+                        "(71 - μ) - (62 - μ) = -0.53σ - (-0.84σ)",
+                        "9 = 0.31σ → σ ≈ 9/0.31 ≈ 29.03",
+                        "Sustituir σ en Ecuación 1:",
+                        "71 - μ = -0.53 × 29.03 ≈ -15.39 → μ ≈ 71 + 15.39 ≈ 86.39"
+                    ]
+                },
+                "verificacion": {
+                    "P(X ≤ 71)": [
+                        "Z = (71 - 86.39)/29.03 ≈ -0.53",
+                        "Φ(-0.53) ≈ 0.3 ✓"
+                    ],
+                    "P(X ≥ 62)": [
+                        "Z = (62 - 86.39)/29.03 ≈ -0.84",
+                        "1 - Φ(-0.84) ≈ 0.8 ✓"
+                    ]
+                },
+                "interpretacion": {
+                    "resultado": "Los valores μ = 86.39 y σ = 29.03 satisfacen exactamente las probabilidades dadas.",
+                    "nota": "Aunque estos parámetros pueden parecer altos para pesos humanos (en kg), son matemáticamente correctos para las condiciones proporcionadas."
+                }
+            }
+        },
+        {
+            "enunciado": "La probabilidad de que una persona no use el cinturón de seguridad es 0.02. En una muestra de 1000 personas, calcular la probabilidad de que entre 15 y 30 no lo usen.",
+            "solucion_correcta": "\\boxed{0.8836} \\text{ (88.36%)}",
+            "conceptos_clave": [
+                "Aproximación normal a la binomial",
+                "Corrección por continuidad",
+                "Teorema del Límite Central"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Parámetros de la distribución binomial",
+                    "calculo": [
+                        "X ~ Binomial(n=1000, p=0.02)",
+                        "μ = np = 1000 × 0.02 = 20",
+                        "σ² = np(1-p) = 1000 × 0.02 × 0.98 = 19.6",
+                        "σ = √19.6 ≈ 4.427"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Aplicar corrección por continuidad",
+                    "detalle": [
+                        "P(15 ≤ X ≤ 30) ≈ P(14.5 < X < 30.5)",
+                        "Estandarización:",
+                        "Z₁ = (14.5 - 20)/4.427 ≈ -1.24",
+                        "Z₂ = (30.5 - 20)/4.427 ≈ 2.37"
+                    ]
+                },
+                "paso_3": {
+                    "descripcion": "Calcular probabilidad usando la normal",
+                    "calculo": [
+                        "P(-1.24 < Z < 2.37) = Φ(2.37) - Φ(-1.24)",
+                        "Φ(2.37) = 0.9911 (dato)",
+                        "Φ(-1.24) = 0.1075 (dato)",
+                        "Resultado: 0.9911 - 0.1075 = 0.8836"
+                    ]
+                },
+                "verificacion": {
+                    "condiciones": [
+                        "np = 20 ≥ 5 ✓",
+                        "n(1-p) = 980 ≥ 5 ✓",
+                        "La aproximación normal es válida."
+                    ]
+                },
+                "interpretacion": "Hay un 88.36% de probabilidad de que entre 15 y 30 personas no usen el cinturón en la muestra."
+            }
+        },
+        {
+            "enunciado": "En la revisión técnica vehicular, se sabe que la probabilidad de que un vehículo que reservó llegue es de 0,95. Se pueden atender 1000 carros. ¿Cuántas citas se deben dar para que el 95% de las veces se aprovechen los 1000 espacios? (Ayuda: Φ(x) = 0,05 => x = -1,64, y se puede aproximar binomial a normal con TLC)",
+            "solucion_correcta": "Se debe resolver P(S_n ≤ 1000) = 0,95, donde S_n ~ Binomial(n, 0,95). Aproximando con TLC: P((S_n - 0,95n) / sqrt(n * 0,95 * 0,05) ≤ (1000 - 0,95n) / sqrt(n * 0,95 * 0,05)) = 0,95. Igualando (1000 - 0,95n) / sqrt(n * 0,95 * 0,05) = -1,64 y resolviendo para n, se obtiene n ≈ 1065.",
+            "conceptos_clave": [
+                "Teorema del Límite Central (TLC)",
+                "Aproximación normal a la binomial",
+                "Probabilidad inversa",
+                "Distribución normal estándar"
+            ],
+            "dificultad": "avanzado"
+        }
+    ],
+    "chebyshev": [
+        {
+            "enunciado": "Una variable aleatoria Y tiene media de 25 y varianza de 100, además es simétrica respecto a la media. Calcule una cota inferior para la probabilidad de que Y esté entre 25 y 40.",
+            "solucion_correcta": "1) Por simetría, P(Y ≥ 25) = 0.5. 2) Aplicamos Chebyshev a P(|Y - μ| ≥ kσ), donde μ = 25, σ = 10, y k = 1.5 (pues 40 = 25 + 1.5×10). 3) Chebyshev da P(|Y - 25| ≥ 15) ≤ 100/225 = 4/9 ≈ 0.444. 4) Por simetría, P(Y ≥ 40) ≤ 2/9 ≈ 0.222. 5) La cota inferior es P(25 < Y < 40) = P(Y > 25) - P(Y ≥ 40) ≥ 0.5 - 0.222 = 5/18 ≈ 0.2778.",
+            "conceptos_clave": [
+                "Desigualdad de Chebyshev",
+                "Simetría de distribuciones",
+                "Cotas de probabilidad",
+                "Media y varianza"
+            ],
+            "dificultad": "intermedio",
+            "explicacion_adicional": "La solución usa: 1) La simetría para P(Y ≥ μ) = 0.5, 2) Chebyshev para acotar P(|Y - μ| ≥ kσ), 3) Simetría nuevamente para dividir la cola superior, y 4) Resta de probabilidades para obtener la cota inferior. El resultado final 5/18 es la mejor cota posible con esta información."
+        },
+        {
+            "enunciado": "Sea X ~ Binomial(n=1000, p=0.02). Resuelva: 1) Use la desigualdad de Chebyshev para obtener una cota inferior de P(15 ≤ X ≤ 25). 2) Calcule la probabilidad aproximada P(15 ≤ X ≤ 25) usando aproximación normal con corrección por continuidad.",
+            "solucion_correcta": {
+                "parte1": "1) μ = np = 20, σ² = np(1-p) = 19.6, σ ≈ 4.427. P(15 ≤ X ≤ 25) = P(|X-20| ≤ 5) ≥ 1 - σ²/5² = 1 - 19.6/25 ≈ 0.216",
+                "parte2": "2) Aproximación normal con corrección: P(14.5 ≤ X ≤ 25.5) = P((14.5-20)/4.427 ≤ Z ≤ (25.5-20)/4.427) = P(-1.24 ≤ Z ≤ 1.24) ≈ 2Φ(1.24)-1 ≈ 0.785"
+            },
+            "conceptos_clave": [
+                "Distribución Binomial",
+                "Desigualdad de Chebyshev",
+                "Aproximación normal",
+                "Corrección por continuidad",
+                "Teorema del Límite Central"
+            ],
+            "dificultad": "intermedio",
+            "explicacion_adicional": {
+                "parte1": "La cota de Chebyshev es conservadora pero válida para cualquier distribución con varianza finita.",
+                "parte2": "La aproximación normal es adecuada cuando np(1-p)>5. La corrección por continuidad mejora la aproximación para variables discretas."
+            }
+        }
     ]
 }
