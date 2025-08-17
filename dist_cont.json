@@ -1,0 +1,131 @@
+{
+    "introducción": [
+        {
+            "enunciado": "Dada la función de densidad de probabilidad (PDF) de una variable aleatoria continua X:",
+            "funcion_densidad": {
+                "fX(x)": {
+                    "definicion": [
+                        "ax \t\t si 1 ≤ x ≤ 7",
+                        "1/x² \t si x ≥ 7",
+                        "0 \t\t en otros casos"
+                    ]
+                }
+            },
+            "problema": "Calcular P[1 ≤ X ≤ 10]",
+            "solucion_correcta": "\\boxed{0.9}",
+            "conceptos_clave": [
+                "Distribuciones continuas",
+                "Función de densidad de probabilidad",
+                "Normalización",
+                "Cálculo de probabilidades"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Encontrar el valor de 'a' que normaliza la PDF",
+                    "calculo": [
+                        "∫_{-∞}^{∞} fX(x) dx = 1",
+                        "∫_{1}^{7} ax dx + ∫_{7}^{∞} 1/x² dx = 1",
+                        "[a(x²/2)]_{1}^{7} + [-1/x]_{7}^{∞} = 1",
+                        "a(49/2 - 1/2) + (0 + 1/7) = 1",
+                        "24a + 1/7 = 1 → 24a = 6/7 → a = 1/28"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Calcular P[1 ≤ X ≤ 10]",
+                    "calculo": [
+                        "P[1 ≤ X ≤ 10] = ∫_{1}^{7} (x/28) dx + ∫_{7}^{10} 1/x² dx",
+                        "= [(x²/56)]_{1}^{7} + [-1/x]_{7}^{10}",
+                        "= (49/56 - 1/56) + (-1/10 + 1/7)",
+                        "= (48/56) + (3/70) = (6/7) + (3/70) = 60/70 + 3/70 = 63/70 = 0.9"
+                    ]
+                },
+                "verificacion": {
+                    "normalizacion": "∫_{1}^{7} (x/28) dx = 0.857, ∫_{7}^{∞} 1/x² dx ≈ 0.143 → Suma ≈ 1 (OK)",
+                    "probabilidad": "El resultado 0.9 es consistente con la PDF normalizada"
+                }
+            }
+        }
+    ],
+    "uniforme": [
+        {
+            "enunciado": "Los buses pasan cada 15 minutos (uniformemente). Fernando espera aleatoriamente durante 30 días. ¿Probabilidad de que en más de la mitad de los días espere >8 minutos?",
+            "solucion_correcta": "\\boxed{0.29} \\text{ (29%)}",
+            "conceptos_clave": [
+                "Distribución uniforme",
+                "Distribución binomial",
+                "Probabilidad exacta"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Probabilidad diaria de esperar >8 minutos",
+                    "modelo_uniforme": {
+                        "rango": "Tiempo de espera X ~ U(0, 15) minutos",
+                        "calculo": "P(X > 8) = (15 - 8)/15 = 7/15 ≈ 0.4667"
+                    }
+                },
+                "paso_2": {
+                    "descripcion": "Modelar días exitosos en 30 días",
+                    "modelo_binomial": {
+                        "parametros": "Y ~ Binomial(n=30, p=7/15)",
+                        "objetivo": "P(Y > 15) = 1 - P(Y ≤ 15)"
+                    }
+                },
+                "paso_3": {
+                    "calculo_exacto": {
+                        "metodo": "Usando la función de distribución binomial acumulada",
+                        "formula": "P(Y > 15) = 1 - P(Y ≤ 15)",
+                        "resultado": "≈ 0.29 (29%)",
+                        "implementacion": "En R: 1 - pbinom(15, 30, 7/15) ≈ 0.29"
+                    }
+                },
+                "interpretacion": {
+                    "resultado": "Hay un 29% de probabilidad de que Fernando espere más de 8 minutos en más de la mitad de los días",
+                    "analisis": "Aunque la probabilidad diaria es menor al 50%, la variabilidad en 30 días permite que ocurra este evento con frecuencia moderada"
+                }
+            }
+        }
+    ],
+    "exponencial": [
+        {
+            "enunciado": "Baterías con vida útil exponencial (μ=20h). Se prueban hasta encontrar una que dure ≥21h. Probabilidad de necesitar probar ≥20 baterías.",
+            "solucion_correcta": "\\boxed{2.16 \\times 10^{-9}} \\text{ (0.000000216%)}",
+            "conceptos_clave": [
+                "Distribución exponencial",
+                "Distribución geométrica",
+                "Probabilidad de cola"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Probabilidad de que una batería dure ≥21 horas",
+                    "calculo": [
+                        "X ~ Exp(λ = 1/20)",
+                        "P(X ≥ 21) = e^{-21/20} ≈ 0.3499"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Modelar el proceso como geométrico",
+                    "detalle": [
+                        "Y ~ Geométrica(p = 0.3499)",
+                        "P(Y ≥ 20) = (1-p)^{19} = (0.6501)^{19}"
+                    ]
+                },
+                "paso_3": {
+                    "calculo_exacto": {
+                        "valor": "(0.6501)^{19} ≈ 2.16 × 10^{-9}",
+                        "interpretacion": "Probabilidad extremadamente baja"
+                    }
+                },
+                "comparacion": {
+                    "error_anterior": "La coincidencia numérica previa fue incorrecta",
+                    "explicacion": "P(Y≥20) ≠ p, excepto cuando k=1"
+                },
+                "contexto_real": {
+                    "implicacion": "Es virtualmente imposible (prob < 0.000001%) necesitar probar 20+ baterías en este escenario"
+                }
+            }
+        }
+    ]
+}

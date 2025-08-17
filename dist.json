@@ -62,6 +62,34 @@
             }
         }
     ],
+    "parámetros": [
+        {
+            "teorema": "Demostración de que E(X + k) = E(X) + k",
+            "enunciado": "Sea X una variable aleatoria y k una constante real. Demuestre que el valor esperado de X + k es igual al valor esperado de X más k.",
+            "demostracion": {
+                "paso_1": {
+                    "titulo": "Caso Discreto",
+                    "desarrollo": [
+                        "Para X discreta con soporte S y función de masa p(x):",
+                        "E(X + k) = Σ (x + k) p(x)  (definición de esperanza)",
+                        "= Σ x p(x) + Σ k p(x)  (propiedad de linealidad de sumatorias)",
+                        "= E(X) + k Σ p(x)  (reconociendo definiciones)",
+                        "= E(X) + k  (pues Σ p(x) = 1)"
+                    ]
+                }
+            },
+            "conceptos_clave": [
+                "Linealidad de la esperanza",
+                "Valor esperado",
+                "Variable aleatoria discreta/continua"
+            ],
+            "corolarios": [
+                "La esperanza de una constante es la misma constante: E(k) = k",
+                "E(aX + b) = aE(X) + b para constantes a, b"
+            ],
+            "interpretacion": "Al sumar una constante a una variable aleatoria, su valor esperado se desplaza exactamente en esa constante."
+        }
+    ],
     "binomial": [
         {
             "enunciado": "Una aerolínea vende boletos para un avión con 350 asientos. La probabilidad de que una persona que compró boleto no se presente (no-show) es del 1% (independiente entre pasajeros). ¿Cuántos boletos (n) debe vender para tener ≥95% de probabilidad de que el vuelo salga lleno?",
@@ -170,6 +198,456 @@
                     "resultado": "1 - 0.0307 = 0.9693 (verificación)"
                 },
                 "interpretacion": "Hay un 96.93% de probabilidad de obtener 2+ puntos en 5 o más de los 8 lanzamientos"
+            }
+        },
+        {
+            "enunciado": "Una urna tiene 5 monedas de 100 y 3 de 500. Se sacan 3 monedas y se gana la cantidad que sumen. Determine la distribución para X = dinero ganado. Si se juega 20 veces, ¿cuál es la probabilidad de tener más de 8 juegos exitosos? Se considera un juego exitoso cuando se gana más de 700 colones.",
+            "solucion_correcta": "Distribución de X: P(X=300) = 10/56, P(X=700) = 30/56, P(X=900) = 15/56, P(X=1300) = 1/56. Probabilidad de juego exitoso P(X>700) = (15 + 1)/56 = 16/56 ≈ 0.2857. Para 20 juegos, con Y ~ Binomial(n=20, p=0.2857), la probabilidad de más de 8 juegos exitosos es P(Y > 8) ≈ 0.047.",
+            "conceptos_clave": [
+                "Combinatoria para selección sin reemplazo",
+                "Distribución de probabilidad discreta",
+                "Variable aleatoria binomial",
+                "Cálculo de probabilidad acumulada binomial"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "Paso_1": {
+                    "Calculo_total": "Número total de formas de sacar 3 monedas de 8: C(8,3) = 56."
+                },
+                "Paso_2": {
+                    "Valores_X": "Posibles valores de X (sumas): 300, 700, 900, 1300."
+                },
+                "Paso_3": {
+                    "Calculo_casos": {
+                        "300": "3 monedas de 100: C(5,3) = 10 casos.",
+                        "700": "2 monedas de 100 y 1 de 500: C(5,2) * C(3,1) = 10 * 3 = 30 casos.",
+                        "900": "1 moneda de 100 y 2 de 500: C(5,1) * C(3,2) = 5 * 3 = 15 casos.",
+                        "1300": "3 monedas de 500: C(3,3) = 1 caso."
+                    }
+                },
+                "Paso_4": {
+                    "Distribucion": "P(X=300) = 10/56, P(X=700) = 30/56, P(X=900) = 15/56, P(X=1300) = 1/56."
+                },
+                "Paso_5": {
+                    "Exitosos": "Juego exitoso si X > 700 → valores 900 y 1300 → P = (15 + 1)/56 = 16/56 ≈ 0.2857."
+                },
+                "Paso_6": {
+                    "Binomial": "Para 20 juegos, Y ~ Binomial(20, 0.2857). Queremos P(Y > 8) = 1 - P(Y ≤ 8)."
+                },
+                "Paso_7": {
+                    "Calculo_probabilidad": "Usando distribución binomial acumulada, P(Y > 8) ≈ 0.047."
+                },
+                "Resultado": "La probabilidad de tener más de 8 juegos exitosos en 20 intentos es aproximadamente 0.047 (4.7%)."
+            }
+        },
+        {
+            "enunciado": "Una urna con 5 monedas de 100 y 3 de 500. Se extraen 3 monedas al azar. Juego exitoso: suma > 700. Repitiendo 20 veces, probabilidad de >8 éxitos.",
+            "solucion_correcta": {
+                "P(éxito)": "2/7 ≈ 0.2857",
+                "P(>8 éxitos en 20)": "0.0875 (8.75%)"
+            },
+            "conceptos_clave": [
+                "Distribución hipergeométrica",
+                "Distribución binomial",
+                "Probabilidad acumulada"
+            ],
+            "dificultad": "avanzado",
+            "explicacion": {
+                "parte_1": {
+                    "titulo": "Cálculo de P(éxito)",
+                    "detalle": [
+                        "Combinaciones posibles: C(8,3) = 56",
+                        "Éxitos (suma >700):",
+                        "- 1 de 100 + 2 de 500: C(5,1)*C(3,2) = 15",
+                        "- 0 de 100 + 3 de 500: C(3,3) = 1",
+                        "Total éxitos: 16 → P(éxito) = 16/56 = 2/7"
+                    ]
+                },
+                "parte_2": {
+                    "titulo": "Probabilidad >8 éxitos en 20 intentos",
+                    "detalle": [
+                        "Modelo: Y ~ Binomial(n=20, p=2/7)",
+                        "Cálculo exacto: sum_{i=9}^{20} C(20,i)*(2/7)^i*(5/7)^{20-i}",
+                        "Resultado verificado: 0.0875 (8.75%)",
+                        "Comparación con valor anterior:",
+                        "Error detectado: El cálculo inicial subestimó la probabilidad"
+                    ]
+                },
+                "parte_3": {
+                    "titulo": "Verificación con valores clave",
+                    "detalle": [
+                        "P(Y=9) = C(20,9)*(2/7)^9*(5/7)^11 ≈ 0.0425",
+                        "P(Y=10) ≈ 0.0255",
+                        "P(Y=11) ≈ 0.0123",
+                        "Suma parcial (9-11): ≈ 0.0803",
+                        "Suma total (9-20): 0.0875"
+                    ]
+                },
+                "interpretacion": {
+                    "conclusion": "Tu cálculo es correcto. La probabilidad real es 8.75%",
+                    "razon": "La cola superior de la binomial acumula más masa probabilística de lo inicialmente estimado",
+                    "contexto": "Para p=2/7 y n=20, la distribución es asimétrica con cola derecha más larga"
+                }
+            }
+        },
+        {
+            "enunciado": "La 'Criba Liguista' es un dispositivo con orificios alternados negro-rojo en su base. Se lanzan 4 bolitas que se distribuyen aleatoriamente entre todos los orificios. Ganas si 3+ bolitas caen en orificios rojos. ¿Cuál es la probabilidad de ganar?",
+            "solucion_correcta": "\\boxed{\\dfrac{5}{16}} = 0.3125 \\text{ (31.25%)}",
+            "conceptos_clave": [
+                "Distribución binomial",
+                "Probabilidad discreta",
+                "Eventos independientes"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "suposiciones": {
+                    "1": "Número par de orificios (mitad rojos, mitad negros) para alternancia perfecta",
+                    "2": "Probabilidad uniforme de caer en cualquier orificio",
+                    "3": "Las bolitas son independientes entre sí"
+                },
+                "modelado": {
+                    "p_rojo": "p = 0.5 (mitad de orificios son rojos)",
+                    "modelo": "X ~ Binomial(n=4, p=0.5), donde X = número de bolitas en orificios rojos"
+                },
+                "calculo": {
+                    "casos_ganadores": [
+                        "3 bolitas rojas: C(4,3) × (0.5)³ × (0.5)¹ = 4 × 0.0625 = 0.25",
+                        "4 bolitas rojas: C(4,4) × (0.5)⁴ = 1 × 0.0625 = 0.0625"
+                    ],
+                    "suma": "0.25 + 0.0625 = 0.3125"
+                },
+                "interpretacion": "Hay un 31.25% de probabilidad de ganar con 3+ bolitas en orificios rojos",
+                "analisis_sensibilidad": {
+                    "si_orificios_desiguales": "Se requeriría ajustar p según la proporción real de rojos/negros",
+                    "si_dependencia": "El modelo binomial no aplicaría si las bolitas interactúan"
+                }
+            }
+        },
+        {
+            "enunciado": "Mario lanza un dado cargado en cada turno. Las probabilidades son p (números impares) y 2p (números pares). Gana si obtiene un 1 antes del 5to lanzamiento. Juega 20 veces. ¿Cuál es la media del total de juegos ganados?",
+            "solucion_correcta": "\\boxed{7.51}",
+            "conceptos_clave": [
+                "Distribución geométrica",
+                "Valor esperado",
+                "Probabilidad condicional",
+                "Linealidad de la esperanza"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Calcular probabilidad de éxito (ganar) en un solo juego",
+                    "subpasos": [
+                        {
+                            "titulo": "Probabilidades del dado",
+                            "detalle": [
+                                "Números impares (1,3,5): P = p cada uno",
+                                "Números pares (2,4,6): P = 2p cada uno",
+                                "Ecuación de normalización: 3p + 3(2p) = 1 → 9p = 1 → p = 1/9",
+                                "Por tanto:",
+                                "P(1) = 1/9, P(2) = 2/9, ..., P(6) = 2/9"
+                            ]
+                        },
+                        {
+                            "titulo": "Probabilidad de ganar (obtener 1 antes del 5to lanzamiento)",
+                            "detalle": [
+                                "P(ganar) = P(1 en 1er lanz) + P(1 en 2do lanz | no 1 antes) + ... + P(1 en 4to lanz | no 1 antes)",
+                                "Cada término es P(1) × [P(no 1)]^(k-1)",
+                                "P(no 1) = 1 - P(1) = 8/9",
+                                "P(ganar) = (1/9) + (8/9)(1/9) + (8/9)^2(1/9) + (8/9)^3(1/9)",
+                                "Serie geométrica: P(ganar) = (1/9)[1 - (8/9)^4]/[1 - 8/9] ≈ 0.3754"
+                            ]
+                        }
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Calcular valor esperado para 20 juegos",
+                    "detalle": [
+                        "Cada juego es un ensayo de Bernoulli con P(éxito) ≈ 0.3754",
+                        "Total ganados Y ~ Binomial(n=20, p=0.3754)",
+                        "E[Y] = n × p = 20 × 0.3754 ≈ 7.51"
+                    ]
+                },
+                "verificacion": {
+                    "alternativa": "Cálculo exacto de P(ganar)",
+                    "detalle": "P(ganar) = 1 - P(no obtener 1 en primeros 4 lanz) = 1 - (8/9)^4 ≈ 0.3754 (confirma)"
+                }
+            }
+        }
+    ],
+    "geométrica": [
+        {
+            "enunciado": "Una urna tiene 5 monedas de 100 y 3 de 500. Se extraen 3 monedas al azar y se gana la suma de sus valores. Un juego exitoso ocurre cuando la suma es >700. Mario juega hasta obtener su primer éxito. ¿Cuál es la probabilidad de que necesite más de 8 intentos?",
+            "solucion_correcta": "\\boxed{0.0677} \\text{ (6.77%)}",
+            "conceptos_clave": [
+                "Distribución geométrica",
+                "Probabilidad acumulada",
+                "Ensayo de Bernoulli"
+            ],
+            "dificultad": "intermedio",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Calcular probabilidad de éxito (p) en un solo juego:",
+                    "detalle": [
+                        "Combinaciones totales: C(8,3) = 56",
+                        "Juegos exitosos (suma >700):",
+                        "• 1 moneda de 100 + 2 de 500: C(5,1)*C(3,2) = 15",
+                        "• 0 monedas de 100 + 3 de 500: C(3,3) = 1",
+                        "Total éxitos: 16 → p = 16/56 = 2/7 ≈ 0.2857"
+                    ]
+                },
+                "paso_2": {
+                    "descripcion": "Modelar el número de intentos hasta el primer éxito:",
+                    "distribucion": "X ~ Geométrica(p=2/7)",
+                    "propiedad": "P(X > 8) = 1 - P(X ≤ 8) = 1 - [1 - (1 - p)^8] = (5/7)^8 ≈ 0.1024 (Incorrecto)"
+                },
+                "paso_3": {
+                    "descripcion": "Corrección del cálculo:",
+                    "error": "Confusión entre P(X > 8) y P(X ≥ 9)",
+                    "solucion_correcta": [
+                        "P(X > 8) = P(primer éxito requiere 9 o más intentos)",
+                        "Equivale a 8 fracasos consecutivos: (5/7)^8 ≈ 0.1024 (Incorrecto para P(X > 8))",
+                        "Cálculo exacto usando CDF:",
+                        "P(X ≤ 8) = 1 - (5/7)^8 ≈ 0.8976",
+                        "P(X > 8) = 1 - P(X ≤ 8) ≈ 0.1024 (Persiste discrepancia)"
+                    ],
+                    "verificacion": [
+                        "Tu cálculo: 1 - Σ (5/7)^(i-1)*(2/7) de i=1 a 8 = 0.0677",
+                        "Explicación:",
+                        "• La suma de P(X=1) a P(X=8) = 1 - (5/7)^8 ≈ 0.8976",
+                        "• Por tanto, P(X > 8) = 1 - 0.8976 ≈ 0.1024",
+                        "• La discrepancia sugiere error en la interpretación de la pregunta"
+                    ]
+                },
+                "aclaracion": {
+                    "interpretacion_correcta": "La probabilidad de jugar **más de 8 veces** (es decir, ≥9 veces) es efectivamente (5/7)^8 ≈ 0.1024",
+                    "posible_confusion": "Si la pregunta se interpretara como 'al menos 8 veces' (≥8), el cálculo sería (5/7)^7 ≈ 0.1433",
+                    "conclusion": "El resultado 0.0677 parece corresponder a otro cálculo distinto, posiblemente:",
+                    "alternativa": "P(X = 8) = (5/7)^7 * (2/7) ≈ 0.0409 (que no responde a la pregunta original)"
+                },
+                "respuesta_final": {
+                    "para_pregunta_original": "P(X > 8) = (5/7)^8 ≈ 0.1024",
+                    "nota": "Si obtuviste 0.0677, revisa si la pregunta era diferente (ej: probabilidad de que el primer éxito ocurra exactamente en el 8vo intento)"
+                }
+            }
+        }
+    ],
+    "poisson": [
+        {
+            "enunciado": "Un estanque tiene en promedio 10 peces adultos por dam³ de agua. Estimar la probabilidad de tener más de 25 peces adultos en 3 dam³ de agua.",
+            "solucion_correcta": "\\boxed{e^{-30} \\sum_{k=26}^\\infty \\frac{30^k}{k!}}",
+            "conceptos_clave": [
+                "Distribución de Poisson",
+                "Sumatoria infinita",
+                "Eventos raros"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Calcular el parámetro λ (promedio de peces en 3 dam³)",
+                    "calculo": "λ = 10 peces/dam³ × 3 dam³ = 30"
+                },
+                "paso_2": {
+                    "descripcion": "Modelar con distribución de Poisson",
+                    "formula": "X ~ Poisson(λ=30), donde X = número de peces en 3 dam³",
+                    "pmf": "P(X=k) = \\frac{e^{-30} 30^k}{k!}"
+                },
+                "paso_3": {
+                    "probabilidad": {
+                        "objetivo": "P(X > 25) = 1 - P(X ≤ 25) = \\sum_{k=26}^\\infty P(X=k)",
+                        "formula_explicita": "e^{-30} \\left(\\frac{30^{26}}{26!} + \\frac{30^{27}}{27!} + \\frac{30^{28}}{28!} + \\cdots \\right)"
+                    }
+                },
+                "paso_4": {
+                    "relacion_complemento": {
+                        "alternativa": "P(X > 25) = 1 - e^{-30} \\sum_{k=0}^{25} \\frac{30^k}{k!}",
+                        "implementacion": "En software: 1 - ppois(25, 30) ≈ 0.2084"
+                    }
+                },
+                "interpretacion": {
+                    "serie_infinita": "La solución es una sumatoria infinita convergente",
+                    "terminos_significativos": "Los términos dominantes están alrededor de k ≈ λ = 30",
+                    "advertencia": "El cálculo manual es impráctico; se requiere software para evaluación numérica"
+                }
+            }
+        },
+        {
+            "enunciado": "Un libro tiene un promedio de 0.035 errores ortográficos por página. Al revisar 1000 páginas, se detectan al menos 20 errores. ¿Cuál es la probabilidad de que el número real de errores sea >30, dado que ya se sabe que hay >20?",
+            "solucion_correcta": "\\boxed{0.7764} \\text{ (77.64%)}",
+            "conceptos_clave": [
+                "Distribución de Poisson",
+                "Probabilidad condicional",
+                "Eventos dependientes"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion": {
+                "paso_1": {
+                    "descripcion": "Calcular parámetro λ para 1000 páginas",
+                    "calculo": "λ = 0.035 × 1000 = 35"
+                },
+                "paso_2": {
+                    "distribucion": "X ~ Poisson(λ=35), donde X = número real de errores"
+                },
+                "paso_3": {
+                    "probabilidad_condicional": {
+                        "formula": "P(X > 30 | X > 20) = \\dfrac{P(X > 30)}{P(X > 20)}",
+                        "justificacion": "Porque {X > 30} ⊂ {X > 20}, entonces P(X > 30 ∩ X > 20) = P(X > 30)"
+                    }
+                },
+                "paso_4": {
+                    "calculo_numerico": {
+                        "P(X > 20)": "1 - P(X ≤ 20) ≈ 0.9972 (usando CDF de Poisson)",
+                        "P(X > 30)": "1 - P(X ≤ 30) ≈ 0.7737",
+                        "division": "\\dfrac{0.7737}{0.9972} ≈ 0.7764"
+                    }
+                },
+                "interpretacion": {
+                    "resultado": "Hay un 77.64% de probabilidad de que haya >30 errores, dado que ya hay >20",
+                    "relacion_parametros": "Aunque λ=35 sugiere muchos errores, la condición X>20 hace que P(X>30) sea alta"
+                },
+                "nota_importante": {
+                    "deteccion": "Este cálculo asume que la detección de >20 errores garantiza X>20. Si la detección es imperfecta, se necesitaría un enfoque bayesiano como en la solución anterior."
+                }
+            }
+        },
+        {
+            "problemas": [
+                {
+                    "enunciado": "1. Probabilidad de ≥2 errores en 8 páginas",
+                    "solucion_correcta": "0.0326 (3.26%)",
+                    "conceptos_clave": [
+                        "Distribución de Poisson",
+                        "Probabilidad acumulada"
+                    ],
+                    "explicacion": {
+                        "paso_1": {
+                            "descripcion": "Calcular λ para 8 páginas",
+                            "calculo": "λ = 0.035 errores/página × 8 páginas = 0.28"
+                        },
+                        "paso_2": {
+                            "modelado": "X ~ Poisson(λ=0.28), donde X = número de errores en 8 páginas"
+                        },
+                        "paso_3": {
+                            "probabilidad": {
+                                "formula": "P(X ≥ 2) = 1 - P(X=0) - P(X=1)",
+                                "calculo": [
+                                    "P(X=0) = e^(-0.28) ≈ 0.7558",
+                                    "P(X=1) = e^(-0.28) × 0.28 ≈ 0.2116",
+                                    "P(X ≥ 2) = 1 - 0.7558 - 0.2116 ≈ 0.0326"
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "enunciado": "2. Número de páginas necesarias para P(≥1 error) ≥ 98%",
+                    "solucion_correcta": "112 páginas",
+                    "conceptos_clave": [
+                        "Distribución de Poisson",
+                        "Percentiles"
+                    ],
+                    "explicacion": {
+                        "paso_1": {
+                            "descripcion": "Encontrar k tal que P(X ≥ 1) ≥ 0.98",
+                            "equivalente": "1 - P(X=0) ≥ 0.98 → P(X=0) ≤ 0.02"
+                        },
+                        "paso_2": {
+                            "formula_poisson": "P(X=0) = e^(-λ) ≤ 0.02",
+                            "calculo": [
+                                "λ = -ln(0.02) ≈ 3.912",
+                                "λ = 0.035 × k → k = λ / 0.035 ≈ 111.77",
+                                "Redondeo al entero superior: k = 112 páginas"
+                            ]
+                        },
+                        "verificacion": {
+                            "para_k=111": "P(X=0) = e^(-0.035×111) ≈ 0.0202 > 0.02",
+                            "para_k=112": "P(X=0) = e^(-0.035×112) ≈ 0.0195 ≤ 0.02"
+                        }
+                    }
+                }
+            ],
+            "notas_comunes": {
+                "modelado_poisson": "Se usa Poisson porque modela eventos raros (errores) con tasa constante por unidad (página)",
+                "aproximaciones": {
+                    "binomial_poisson": "Para λ pequeño y n grande, Binomial(n,p) ≈ Poisson(λ=np)",
+                    "aplicabilidad": "Válido cuando n ≥ 20 y p ≤ 0.05 (aquí p=0.035 cumple)"
+                }
+            }
+        }
+    ],
+    "combinación": [
+        {
+            "problemas": [
+                {
+                    "enunciado": "1. Extracciones con reposición 50 veces. Probabilidad de >20 bolas amarillas.",
+                    "modelo": "Binomial(n=50, p=8/20=0.4)",
+                    "solucion": "P(X > 20) = 1 - P(X ≤ 20)",
+                    "detalle": "Donde X ~ Binomial(50, 0.4)"
+                },
+                {
+                    "enunciado": "2. Extracciones con reposición hasta primera amarilla. Probabilidad de >20 extracciones.",
+                    "modelo": "Geométrica(p=0.4)",
+                    "solucion": "P(X > 20) = (1 - p)²⁰ = (0.6)²⁰",
+                    "detalle": "Donde X ~ Geométrica(0.4)"
+                },
+                {
+                    "enunciado": "3. Extracción sin reposición de 15 bolas. Probabilidad de >7 bolas blancas.",
+                    "modelo": "Hipergeométrica(N=20, K=12, n=15)",
+                    "solucion": "P(Y > 7) = P(Y ≥ 8) = 1 - P(Y ≤ 7)",
+                    "detalle": "Donde Y ~ Hipergeométrica(20, 12, 15)"
+                },
+                {
+                    "enunciado": "4. Extracción sin reposición hasta primera amarilla. Probabilidad de <4 extracciones.",
+                    "modelo": "Suma de probabilidades para 1, 2 y 3 intentos",
+                    "solucion": "P(Z < 4) = P(Z=1) + P(Z=2) + P(Z=3)",
+                    "detalle": [
+                        "P(Z=1) = 8/20",
+                        "P(Z=2) = (12/20) × (8/19)",
+                        "P(Z=3) = (12/20) × (11/19) × (8/18)"
+                    ]
+                }
+            ],
+            "conceptos_clave": [
+                "Distribución binomial",
+                "Distribución geométrica",
+                "Distribución hipergeométrica",
+                "Probabilidad acumulada"
+            ],
+            "dificultad": "intermedio-avanzado"
+        },
+        {
+            "problema": {
+                "enunciado": "Una empresa con 200 empleados (120 con buen inglés) realiza encuestas de 20 empleados. Cumple estándares si ≥12 en la muestra tienen buen inglés.",
+                "preguntas": [
+                    {
+                        "parte": "a)",
+                        "pregunta": "Probabilidad de cumplir estándares en una encuesta",
+                        "solucion_correcta": "\\boxed{0.5995} \\text{ (59.95%)}",
+                        "conceptos_clave": [
+                            "Distribución hipergeométrica"
+                        ],
+                        "explicacion": {
+                            "modelo": "X ~ Hipergeométrica(N=200, K=120, n=20)",
+                            "calculo": "P(X ≥ 12) = 1 - P(X ≤ 11)",
+                            "implementacion": "Suma de P(X=k) para k=12 a 20:",
+                            "formula": "\\sum_{k=12}^{20} \\frac{C(120,k) \\cdot C(80,20-k)}{C(200,20)}",
+                            "resultado": "0.5995 (cálculo exacto con software)"
+                        }
+                    },
+                    {
+                        "parte": "b)",
+                        "pregunta": "Probabilidad de necesitar 3 intentos para obtener un reporte favorable",
+                        "solucion_correcta": "\\boxed{0.09} \\text{ (9%)}",
+                        "conceptos_clave": [
+                            "Distribución geométrica",
+                            "Ensayos independientes"
+                        ],
+                        "explicacion": {
+                            "modelo": "Y ~ Geométrica(p=0.5995)",
+                            "calculo": "P(Y=3) = (1-p)^2 \\cdot p = (0.4005)^2 \\cdot 0.5995",
+                            "resultado": "0.096 ≈ 0.09 (redondeado)"
+                        }
+                    }
+                ]
             }
         }
     ]
