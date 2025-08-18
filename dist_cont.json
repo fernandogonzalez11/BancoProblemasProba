@@ -45,6 +45,33 @@
                     "probabilidad": "El resultado 0.9 es consistente con la PDF normalizada"
                 }
             }
+        },
+        {
+            "enunciado": "Variable aleatoria Z (duración en horas para detectar software malicioso) con función de densidad f_Z(z) = 24/z⁵ para z ≥ k, 0 en otro caso. Resuelva: a) Hallar k para que f_Z sea válida; b) Calcular P[2 ≤ Z ≤ 3].",
+            "solucion_correcta": {
+                "a) Valor de k": {
+                    "condicion": "∫_k^∞ (24/z⁵) dz = 1",
+                    "calculo": "∫(24/z⁵)dz = -6/z⁴ |_k^∞ = 6/k⁴ = 1 → k⁴ = 6 → k = 6^(1/4) ≈ 1.565",
+                    "resultado": "k = 6^(1/4) ≈ 1.565 horas"
+                },
+                "b) P[2 ≤ Z ≤ 3]": {
+                    "calculo": "∫_2^3 (24/z⁵) dz = -6/z⁴ |_2^3 = 6/16 - 6/81 ≈ 0.375 - 0.074 = 0.301",
+                    "resultado": "P[2 ≤ Z ≤ 3] ≈ 0.301 (30.1%)"
+                }
+            },
+            "conceptos_clave": [
+                "Función de densidad de probabilidad",
+                "Normalización de funciones",
+                "Cálculo integral",
+                "Probabilidad en intervalos",
+                "Distribuciones continuas"
+            ],
+            "dificultad": "intermedio-avanzado",
+            "explicacion_adicional": {
+                "interpretacion_a": "k ≈ 1.565 horas es el tiempo mínimo de detección posible según este modelo",
+                "interpretacion_b": "Hay 30.1% de probabilidad que la detección ocurra entre 2 y 3 horas",
+                "relevancia": "Este tipo de modelo es útil para evaluar eficacia de sistemas de detección de malware"
+            }
         }
     ],
     "uniforme": [
@@ -391,6 +418,57 @@
                 "Resolución de ecuaciones no lineales"
             ],
             "dificultad": "avanzado"
+        },
+        {
+            "enunciado": "En un examen de certificación internacional en ciberseguridad, los puntajes siguen una distribución normal con desviación estándar de 100 puntos. Se requiere mínimo 600 puntos para aprobar, y este año el 39% de los aspirantes aprobaron. Determine el puntaje promedio de los candidatos.",
+            "solucion_correcta": {
+                "paso1": "Definimos X ~ N(μ, σ=100) donde μ es el puntaje promedio desconocido",
+                "paso2": "P(X ≥ 600) = 0.39 → P(Z ≥ (600-μ)/100) = 0.39",
+                "paso3": "Buscamos z tal que P(Z ≤ z) = 0.61 → z ≈ 0.2793 (de tablas normales)",
+                "paso4": "Resolviendo: (600-μ)/100 = 0.2793",
+                "paso5": "600 - μ = -27.93 → μ = 600 - 27.93 = 572.07",
+                "resultado": "El puntaje promedio fue ≈ 572.07 puntos"
+            },
+            "conceptos_clave": [
+                "Distribución normal",
+                "Percentiles",
+                "Probabilidad acumulada",
+                "Estadística inversa",
+                "Aplicaciones en evaluación educativa"
+            ],
+            "dificultad": "intermedio"
+        },
+        {
+            "enunciado": "Análisis de ganancias diarias en una compañía de software con distribución normal (μ=$320, σ=$18). Resuelva: a) Probabilidad ganancia mensual < $9,400; b) Mínimo días para 99% de promedios en [$319,$321]; c) Límite inferior con 5% falla mensual; d) Valor esperado y varianza mensual.",
+            "solucion_correcta": {
+                "a) P(Ganancia mensual < $9,400)": {
+                    "parametros": "Ganancia mensual ~ N(30×320, 30×18²) = N(9600, 9720)",
+                    "calculo": "P(X < 9400) = P(Z < (9400-9600)/√9720) = P(Z < -2.034) ≈ 0.021 (2.1%)"
+                },
+                "b) Días para 99% de promedios en [$319,$321]": {
+                    "enfoque": "Ley de los grandes números + Teorema del Límite Central",
+                    "ecuacion": "P(319 < X̄ < 321) = P(-ε < Z < ε) = 0.99 → ε = 2.576",
+                    "resolucion": "2.576 = (321-320)/(18/√n) → √n = 2.576×18 → n ≈ 2153 días"
+                },
+                "c) Límite inferior 5% percentil": {
+                    "distribucion": "N(9600, 9720)",
+                    "percentil": "z = -1.645 para P(X < k) = 0.05",
+                    "calculo": "k = 9600 - 1.645×√9720 ≈ $9,438.30"
+                },
+                "d) Valor esperado y varianza mensual": {
+                    "esperanza": "E[G_mensual] = 30×320 = $9,600",
+                    "varianza": "Var(G_mensual) = 30×18² = 9,720 $²",
+                    "desviacion": "σ = √9720 ≈ $98.59"
+                }
+            },
+            "conceptos_clave": [
+                "Distribución normal",
+                "Suma de variables aleatorias",
+                "Teorema del Límite Central",
+                "Percentiles normales",
+                "Ley de los grandes números"
+            ],
+            "dificultad": "avanzado"
         }
     ],
     "gamma": [
@@ -698,6 +776,47 @@
                 "Distribución normal estándar"
             ],
             "dificultad": "avanzado"
+        },
+        {
+            "enunciado": "Evaluación de un sistema IDS para detección de paquetes maliciosos (4% tasa real) en 1500 paquetes simulados.",
+            "solucion_correcta": {
+                "a) Aproximación normal": {
+                    "condicion": "nπ = 1500×0.04 = 60 ≥ 5, n(1-π) = 1440 ≥ 5 → Aproximación válida",
+                    "justificacion": "Cumple criterios np ≥ 5 y n(1-p) ≥ 5 para aproximación normal"
+                },
+                "b) P(X ≥ 70)": {
+                    "parametros": "X ~ Bin(n=1500, p=0.04) ≈ N(μ=60, σ²=57.6, σ=7.589)",
+                    "correccion": "P(X ≥ 69.5) = P(Z ≥ (69.5-60)/7.589) = P(Z ≥ 1.251)",
+                    "resultado": "1 - Φ(1.251) ≈ 0.1056 (10.56%)"
+                },
+                "c) P(55 ≤ X ≤ 65)": {
+                    "correccion": "P(54.5 ≤ X ≤ 65.5)",
+                    "calculo": "P(-0.725 ≤ Z ≤ 0.725) = 2Φ(0.725)-1 ≈ 0.5319 (53.19%)"
+                },
+                "d) Percentil 90%": {
+                    "z-score": "z = 1.282 (para P(X ≤ k) = 0.90)",
+                    "calculo": "k = 60 + 1.282×7.589 ≈ 69.73 → 70 paquetes"
+                },
+                "e) Momentos": {
+                    "media": "μ = np = 1500×0.04 = 60 paquetes",
+                    "varianza": "σ² = np(1-p) = 57.6",
+                    "desviacion": "σ = √57.6 ≈ 7.589 paquetes"
+                },
+                "f) Interpretación": {
+                    "eficacia": "El sistema detecta ≈60 paquetes maliciosos en promedio (±7.6)",
+                    "sensibilidad": "10.56% probabilidad de detectar ≥70 (alta capacidad)",
+                    "consistencia": "53.19% probabilidad de detección en rango [55,65]",
+                    "excelencia": "Detección ≥70 paquetes lo ubica en top 10% de desempeño"
+                }
+            },
+            "conceptos_clave": [
+                "Aproximación normal a binomial",
+                "Corrección por continuidad",
+                "Distribución de probabilidad",
+                "Percentiles normales",
+                "Interpretación de resultados"
+            ],
+            "dificultad": "intermedio-avanzado"
         }
     ],
     "chebyshev": [
@@ -730,6 +849,28 @@
             "explicacion_adicional": {
                 "parte1": "La cota de Chebyshev es conservadora pero válida para cualquier distribución con varianza finita.",
                 "parte2": "La aproximación normal es adecuada cuando np(1-p)>5. La corrección por continuidad mejora la aproximación para variables discretas."
+            }
+        },
+        {
+            "enunciado": "En una auditoría de tiempos de respuesta de un servidor web, el tiempo de carga T tiene media 250 ms y desviación estándar 20 ms. Use la desigualdad de Chebyshev para hallar una cota inferior para P(210 < T < 290).",
+            "solucion_correcta": {
+                "paso1": "Identificar parámetros: μ = 250 ms, σ = 20 ms",
+                "paso2": "Calcular distancia a la media: 290 - 250 = 40 ms (k = 40/20 = 2 desviaciones estándar)",
+                "paso3": "Aplicar Chebyshev: P(|T - μ| < kσ) ≥ 1 - 1/k²",
+                "paso4": "Sustituir k = 2: P(|T - 250| < 40) ≥ 1 - 1/4 = 0.75",
+                "resultado": "La cota inferior para P(210 < T < 290) es 0.75 (75%)"
+            },
+            "conceptos_clave": [
+                "Desigualdad de Chebyshev",
+                "Cotas de probabilidad",
+                "Distribución de tiempos de respuesta",
+                "Análisis de rendimiento de servidores"
+            ],
+            "dificultad": "intermedio",
+            "explicacion_adicional": {
+                "interpretacion": "Chebyshev garantiza que al menos el 75% de los tiempos caerán en este intervalo, independientemente de la distribución",
+                "comparacion": "Si T fuera normal, P(210 < T < 290) ≈ 0.9545 (95.45%)",
+                "aplicacion": "Esta cota conservadora es útil para garantías de servicio sin hacer supuestos distribucionales"
             }
         }
     ]
